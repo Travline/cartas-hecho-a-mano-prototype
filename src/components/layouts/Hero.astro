@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import heroImg from "../../../public/assets/2c060230-cb82-4d7a-8ceb-c40acaf26206.png";
+---
+
+<div class="hero-container">
+  <section class="hero-content">
+    <Image
+      src={heroImg}
+      alt={"Persona mayor feliz recibiendo una carta escrita a mano en un atardecer"}
+      class={"banner-img"}
+    />
+    <section class="banner-text">
+      <h1>Cartas hechas a mano</h1>
+      <hr />
+      <ul>
+        <li>Envía tu carta a la persona que mas quieras</li>
+        <li>Personaliza tu carta y no dejes de sorprenderlos</li>
+        <li>Cartas únicas realizadas a mano con una pluma fuente</li>
+        <li>Cuidamos cada detalle para sorprender a tus seres queridos</li>
+        <li>Alegra el día a quien más quieras</li>
+      </ul>
+    </section>
+  </section>
+</div>
+
+<style>
+  .hero-container {
+    background-color: var(--main-light-accent-color);
+    width: stretch;
+  }
+
+  .hero-content {
+    padding: 6.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .banner-img {
+    flex: 1 1 300px;
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  .banner-text {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .banner-text h1 {
+    font-size: var(--font-big);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .banner-text hr {
+    border: 0;
+    border-top: 3px solid var(--gray-accent-color);
+    width: 25%;
+    margin: 1.25rem 0;
+    border-radius: 5px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      flex-direction: column;
+      padding-top: 4rem;
+    }
+
+    .banner-img {
+      max-width: 100%;
+    }
+  }
+</style>

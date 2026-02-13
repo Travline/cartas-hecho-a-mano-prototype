@@ -3,6 +3,8 @@
   --font-big: 1.5rem;
 
   --main-accent-color: #e3626e;
+  --main-light-accent-color: #FEDFC3;
+  --gray-accent-color: #433A44;
 }
 
 * {
@@ -27,7 +29,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Enlaces: heredan el color y quitan el subrayado por defecto */
 a {
   text-decoration: none;
   color: inherit;
@@ -38,10 +39,10 @@ ul, ol {
   list-style: none;
 }
 
-img, picture, svg, video {
+/*img, picture, svg, video {
   display: block;
   max-width: 100%;
-}
+}*/
 
 input, button, textarea, select {
   font: inherit;
