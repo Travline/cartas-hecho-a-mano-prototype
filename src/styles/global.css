@@ -1,6 +1,8 @@
 :root {
   --font-regular: 1rem;
   --font-big: 1.5rem;
+
+  --main-accent-color: #e3626e;
 }
 
 * {
