@@ -1,5 +1,6 @@
 :root {
   --font-regular: 1rem;
+  --font-big: 1.5rem;
 }
 
 * {
@@ -12,6 +13,40 @@
 }
 
 html {
+  -webkit-text-size-adjust: none;
+  scroll-behavior: smooth;
   font-size: clamp(14px, 2vw, 18px);
   scrollbar-gutter: stable;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Enlaces: heredan el color y quitan el subrayado por defecto */
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, picture, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
