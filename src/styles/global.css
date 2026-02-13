@@ -1,0 +1,17 @@
+:root {
+  --font-regular: 1rem;
+}
+
+* {
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  font-size: var(--font-regular);
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-on);
+}
+
+html {
+  font-size: 16px;
+  scrollbar-gutter: stable;
+}
