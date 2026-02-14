@@ -1,0 +1,172 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout>
+  <div class="auth-wrapper">
+    <section class="auth-card">
+      <h2>Iniciar Sesión</h2>
+      <p class="subtitle">¡Qué bueno verte de nuevo!</p>
+
+      <form action="#" class="auth-form">
+        <div class="input-group">
+          <label for="login-email">Correo electrónico</label>
+          <input
+            type="email"
+            id="login-email"
+            placeholder="ejemplo@correo.com"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <div class="label-row">
+            <label for="login-password">Contraseña</label>
+            <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+          </div>
+          <input
+            type="password"
+            id="login-password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn-submit">Entrar</button>
+      </form>
+
+      <p class="switch-text">
+        ¿No tienes cuenta? <a href="/register">Regístrate aquí</a>
+      </p>
+    </section>
+  </div>
+</MainLayout>
+
+<style>
+  .auth-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    padding: 8rem 2rem 4rem 2rem;
+    background-color: var(--main-light-accent-color);
+    min-height: 100dvh;
+  }
+
+  .auth-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+  }
+
+  h2 {
+    font-family: "Quintessential", serif;
+    color: var(--main-dark-color);
+    font-size: var(--font-big);
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 2rem;
+    font-size: var(--font-regular);
+  }
+
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: var(--font-regular);
+    color: var(--main-dark-color);
+  }
+
+  input {
+    padding: 0.8rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--main-accent-color);
+    box-shadow: 0 0 0 3px rgba(var(--main-accent-color-rgb), 0.1);
+  }
+
+  .forgot-link,
+  .switch-text a {
+    font-size: 0.8rem;
+    color: var(--main-accent-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .forgot-link:hover,
+  .switch-text a:hover {
+    text-decoration: underline;
+  }
+
+  .btn-submit {
+    background-color: var(--main-accent-color);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      transform 0.2s,
+      background-color 0.2s;
+    margin-top: 1rem;
+  }
+
+  .btn-submit:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+  .btn-submit:active {
+    transform: scale(0.98);
+    filter: brightness(1.1);
+  }
+
+  .switch-text {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .auth-card {
+      padding: 2rem;
+    }
+  }
+</style>
