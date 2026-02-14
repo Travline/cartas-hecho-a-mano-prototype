@@ -1,16 +1,17 @@
 <header>
-  <span>Cartas hechas a mano</span>
+  <span>Hecho A Mano</span>
+  
+  <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+  
+  <label for="menu-toggle" class="hamburger">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+  </label>
+
   <nav>
     <ul>
-      <li>
-        <a href="/">Inicio</a>
-      </li>
-      <li>
-        <a href="how-it-works">Cómo funciona</a>
-      </li>
-      <li>
-        <a href="/#faq">Preguntas Frecuentes</a>
-      </li>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/how-it-works">Cómo funciona</a></li>
+      <li><a href="/#faq">Preguntas Frecuentes</a></li>
     </ul>
   </nav>
 </header>
@@ -19,40 +20,80 @@
   header {
     background-color: white;
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
-    z-index: 999;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
-    padding: 1rem 2rem;
+    height: 80px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+    padding: 0 2rem;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    box-sizing: border-box;
   }
 
   span {
-    font-family: "Quintessential", "Times New Roman", Times, serif;
-    font-size: var(--font-big);
+    font-family: "Quintessential", serif;
+    font-size: var(--font-semi-big);
     font-weight: 600;
     color: var(--main-accent-color);
-    text-align: center;
+  }
+
+  /* --- DESKTOP (Por defecto) --- */
+  .menu-checkbox, 
+  .hamburger {
+    display: none; /* OCULTO SIEMPRE EN DESKTOP */
   }
 
   ul {
     display: flex;
-    flex-direction: row;
+    list-style: none;
     gap: 2rem;
+    margin: 0;
+    padding: 0;
   }
 
-  li {
-    text-align: center;
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
   }
 
-  a:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 0.15rem;
-    text-decoration-color: var(--main-accent-color);
+  /* --- MOBILE (max-width: 768px) --- */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block; /* Solo aparece en móvil */
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* Seguimos ocultando el input físicamente pero dejamos que funcione */
+    .menu-checkbox {
+      display: none; 
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%; /* Fuera de pantalla */
+      width: 70%;
+      height: 100vh;
+      background-color: white;
+      padding-top: 100px;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+    }
+
+    ul {
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    /* Lógica de apertura: El selector ~ busca al hermano 'nav' */
+    #menu-toggle:checked ~ nav {
+      right: 0;
+    }
   }
 </style>
