@@ -2,7 +2,7 @@
 const { class: className, ...rest } = Astro.props
 ---
 
-<button class={ className } { ...rest }>
+<button class:list={ [className] } { ...rest }>
   <slot />
 </button>
 
@@ -16,17 +16,15 @@ const { class: className, ...rest } = Astro.props
     cursor: pointer;
     transform: scale(1);
     transition: transform 0.1s ease-in-out;
-    transition: font-weight 0.1s ease-in-out;
     display: inline-block;
     width: fit-content;
   }
 
   button:hover {
-    transform: scale(1.025);
-    font-weight: 500;
+    transform: scale(1.05);
   }
 
   button:active {
-    transform: scale(0.975);
+    transform: scale(0.95);
   }
 </style>
