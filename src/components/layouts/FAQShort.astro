@@ -1,0 +1,76 @@
+---
+import FAQItem from "./FAQItem.astro"
+import ButtonMainColor from "./ButtonMainColor.astro"
+---
+
+<section class="faq-section" id="faq">
+  <h2>Preguntas Frecuentes</h2>
+
+  <FAQItem>
+    <span slot="pregunta">
+      ¿Las cartas están hechas a mano?
+    </span>
+    <p slot="respuesta">
+      El interior de la carta donde van los textos dirigidos al destinatario, están realizados a mano con una pluma fuente (Una pluma estilográfica es un instrumento de dibujo técnico y escritura).
+    </p>
+  </FAQItem>
+
+  <FAQItem>
+    <span slot="pregunta">
+      ¿Cómo controlan la calidad de la caligrafía y correcta ortografía de cada carta?
+    </span>
+    <p slot="respuesta">
+      Todas las cartas pasan varios controles internos para asegurarte la máxima calidad. Si quieres ver muestras de nuestros envíos sólo tienes que solicitárnoslo.
+    </p>
+  </FAQItem>
+
+  <FAQItem>
+    <span slot="pregunta">
+      ¿Cuántas palabras permites en tus tarjetas?
+    </span>
+    <p slot="respuesta">
+      Las cartas tienen capacidad máxima de 50 a 65 palabras, si tu mensaje incluye más te daremos un presupuesto personalizado.
+    </p>
+  </FAQItem>
+
+  <FAQItem>
+    <span slot="pregunta">
+      ¿Puedo pedir varias cartas en un mismo pedido?
+    </span>
+    <p slot="respuesta">
+      Sí, por supuesto. Una vez que termines de personalizar la primera te dará la opción de seguir añadiendo más a tu pedido.
+    </p>
+  </FAQItem>
+
+  <FAQItem>
+    <span slot="pregunta">
+      ¿Puedo elegir entre diferentes estilos de escritura?
+    </span>
+    <p slot="respuesta">
+      ¡Absolutamente! Ofrecemos una variedad de estilos y regularmente agregaremos más.
+    </p>
+  </FAQItem>
+
+  <ButtonMainColor class={"faq-button"} url={"/faq"}>
+    Ver Más Preguntas
+  </ButtonMainColor>
+</section>
+
+<style>
+  .faq-section {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: var(--font-big);
+  }
+  .faq-button {
+    margin: 0 auto;
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import FAQItem from "../components/layouts/FAQItem.astro";
+---
+
+<MainLayout>
+  <section class="faq-section">
+    <h2>Preguntas Frecuentes</h2>
+
+    <FAQItem>
+      <span slot="pregunta">¿Cuánto tarda en llegar mi carta?</span>
+      <p slot="respuesta">
+        Nuestras cartas se escriben a mano con calma. El proceso de creación
+        toma 2 días y el envío suele tardar entre <strong
+          >3 a 5 días hábiles</strong
+        > dependiendo de tu ubicación.
+      </p>
+    </FAQItem>
+
+    <FAQItem>
+      <span slot="pregunta">¿Puedo elegir el color de la tinta?</span>
+      <p slot="respuesta">
+        ¡Claro! Trabajamos con pluma fuente y disponemos de tinta azul real,
+        negra clásica y sepia para un toque más antiguo.
+      </p>
+    </FAQItem>
+  </section>
+
+  <style>
+    .faq-section {
+      max-width: 800px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: var(--font-big);
+    }
+  </style>
+</MainLayout>

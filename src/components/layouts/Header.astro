@@ -2,9 +2,15 @@
   <span>Cartas hechas a mano</span>
   <nav>
     <ul>
-      <li>Inicio</li>
-      <li>Cómo funciona</li>
-      <li>Preguntas frecuentes</li>
+      <li>
+        <a href="/">Inicio</a>
+      </li>
+      <li>
+        <a href="how-it-works">Cómo funciona</a>
+      </li>
+      <li>
+        <a href="#faq">Preguntas Frecuentes</a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -27,7 +33,7 @@
   }
 
   span {
-    font-family: "Quintessential", 'Times New Roman', Times, serif;
+    font-family: "Quintessential", "Times New Roman", Times, serif;
     font-size: var(--font-big);
     font-weight: 600;
     color: var(--main-accent-color);
@@ -42,5 +48,11 @@
 
   li {
     text-align: center;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+    text-decoration-color: var(--main-accent-color);
   }
 </style>
