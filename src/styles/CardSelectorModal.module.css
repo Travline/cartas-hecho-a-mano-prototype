@@ -1,9 +1,8 @@
 .container {
   display: grid;
-  /* auto-fit: crea tantas columnas como quepan */
-  /* minmax: la card mide mínimo 10rem y máximo 1fr (fracción del espacio restante) */
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 1.5rem; /* Un poco más de aire entre cards */
+  /* Configuración para tablets y escritorio: se adapta según el espacio */
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
   padding: 1rem;
 }
 
@@ -38,4 +37,24 @@
   /* Si el texto es muy largo, esto ayuda a que no rompa la card */
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Media query para Mobile (pantallas de menos de 480px) */
+@media (max-width: 480px) {
+  .container {
+    /* Forzamos exactamente 2 columnas iguales */
+    /* 1fr 1fr divide el espacio en dos partes idénticas */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.8rem; /* Reducimos un poco el gap para ganar espacio */
+    padding: 0.5rem;
+  }
+
+  .card {
+    /* Opcional: reducimos el padding interno en mobile para que la imagen sea más grande */
+    padding: 0.4rem;
+  }
+
+  .card p {
+    font-size: 0.85rem; /* Un poco más pequeño para que quepa en 2 columnas */
+  }
 }
