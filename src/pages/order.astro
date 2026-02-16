@@ -81,7 +81,12 @@ import CardSelectorModal from "../components/ui/CardSelectorModal";
           </div>
         </div>
 
-        <CardSelectorModal client:visible />
+        <fieldset class="card-selector">
+          <legend>
+            Elige tu carta preferida
+          </legend>
+          <CardSelectorModal client:visible />
+        </fieldset>
 
         <button type="submit" class="btn-order">Confirmar Pedido</button>
       </form>
@@ -121,6 +126,19 @@ import CardSelectorModal from "../components/ui/CardSelectorModal";
   }
 
   .pill-group legend {
+    font-size: var(--font-semi-big);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card-selector {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .card-selector legend {
     font-size: var(--font-semi-big);
     font-weight: 600;
     margin-bottom: 1rem;

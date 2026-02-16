@@ -1,10 +1,25 @@
 <header>
   <a class="tittle" href="/">Cartas Hechas A Mano</a>
-  
+
   <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
-  
+
   <label for="menu-toggle" class="hamburger">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><line x1="3" y1="12" x2="21" y2="12"></line><line
+        x1="3"
+        y1="6"
+        x2="21"
+        y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg
+    >
   </label>
 
   <nav>
@@ -12,6 +27,7 @@
       <li><a href="/">Inicio</a></li>
       <li><a href="/how-it-works">Cómo funciona</a></li>
       <li><a href="/#faq">Preguntas Frecuentes</a></li>
+      <li><a href="/profile">Perfil</a></li>
     </ul>
   </nav>
 </header>
@@ -41,7 +57,7 @@
   }
 
   /* --- DESKTOP (Por defecto) --- */
-  .menu-checkbox, 
+  .menu-checkbox,
   .hamburger {
     display: none; /* OCULTO SIEMPRE EN DESKTOP */
   }
@@ -62,6 +78,10 @@
 
   /* --- MOBILE (max-width: 768px) --- */
   @media (max-width: 768px) {
+    a .tittle {
+      display: none;
+    }
+
     .hamburger {
       display: block; /* Solo aparece en móvil */
       cursor: pointer;
@@ -70,7 +90,7 @@
 
     /* Seguimos ocultando el input físicamente pero dejamos que funcione */
     .menu-checkbox {
-      display: none; 
+      display: none;
     }
 
     nav {
@@ -82,7 +102,7 @@
       background-color: white;
       padding-top: 100px;
       transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+      box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
     }
 
     ul {

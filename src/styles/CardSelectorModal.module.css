@@ -1,9 +1,23 @@
 .container {
   display: grid;
-  /* Configuración para tablets y escritorio: se adapta según el espacio */
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   gap: 1rem;
   padding: 1rem;
+
+  /* --- NUEVAS PROPIEDADES PARA EL SCROLL --- */
+  height: 500px;            /* O la altura que prefieras (ej. 80vh) */
+  overflow-y: auto;         /* Habilita el scroll vertical solo si es necesario */
+  scrollbar-width: thin;    /* (Opcional) Hace la barra de scroll más estética en Firefox */
+}
+
+/* Opcional: Estilizar la barra de scroll para navegadores Chrome/Edge/Safari */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
 }
 
 .card {
