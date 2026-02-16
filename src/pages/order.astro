@@ -1,6 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
+import CardSelectorModal from "../components/ui/CardSelectorModal";
 ---
 
 <MainLayout>
@@ -12,27 +12,35 @@ import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
         <fieldset class="pill-group">
           <legend>¿Cómo quieres el contenido?</legend>
           <div class="pill-options">
-            <input type="radio" name="redaccion" id="redactar" checked />
+            <input
+              type="radio"
+              value="redactar"
+              name="redaccion"
+              id="redactar"
+              checked
+            />
             <label for="redactar">Redactar Carta</label>
 
-            <input type="radio" name="redaccion" id="sugerido" />
+            <input
+              type="radio"
+              value="sugerido"
+              name="redaccion"
+              id="sugerido"
+            />
             <label for="sugerido">Texto Sugerido</label>
           </div>
         </fieldset>
 
-        <div class="text-area-container">
+        <div id="mensaje-container" class="text-area-container">
           <label for="mensaje">Escribe tu mensaje aquí:</label>
           <textarea id="mensaje" placeholder="Querido/a..."></textarea>
-          <p class="help-text">
-            Nosotros nos encargaremos de caligrafiar esto palabra por palabra.
-          </p>
         </div>
 
         <fieldset class="pill-group">
           <legend>Zona de Envío</legend>
           <div class="pill-options">
             <input type="radio" name="envio" id="lima" checked />
-            <label for="lima">Lima Metropolitana</label>
+            <label for="lima">Lima</label>
 
             <input type="radio" name="envio" id="provincia" />
             <label for="provincia">Provincia</label>
@@ -62,7 +70,18 @@ import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
               required
             />
           </div>
+
+          <div class="input-group">
+            <label for="referencia">Añade una referencia</label>
+            <input
+              type="text"
+              id="referencia"
+              placeholder="Frente al parque..."
+            />
+          </div>
         </div>
+
+        <CardSelectorModal client:visible />
 
         <button type="submit" class="btn-order">Confirmar Pedido</button>
       </form>
@@ -235,3 +254,32 @@ import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
     }
   }
 </style>
+
+<script>
+  // Esta función envuelve todo para que corra solo cuando el HTML esté listo
+  document.addEventListener("DOMContentLoaded", () => {
+    const radios = document.querySelectorAll('input[name="redaccion"]');
+    const container = document.getElementById("mensaje-container");
+
+    // Función interna para cambiar el estilo
+    const toggleContainer = (valor: string) => {
+      if (container) {
+        container.style.display = valor === "sugerido" ? "none" : "flex";
+      }
+    };
+
+    // Escuchamos el cambio en cada radio
+    radios.forEach((radio) => {
+      radio.addEventListener("change", (e) => {
+        const el = e.target as HTMLInputElement;
+        toggleContainer(el.value);
+      });
+    });
+
+    // Ejecución inicial por si el navegador recuerda el estado al recargar
+    const checkedRadio = document.querySelector(
+      'input[name="redaccion"]:checked',
+    ) as HTMLInputElement;
+    if (checkedRadio) toggleContainer(checkedRadio.value);
+  });
+</script>

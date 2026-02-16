@@ -1,0 +1,41 @@
+.container {
+  display: grid;
+  /* auto-fit: crea tantas columnas como quepan */
+  /* minmax: la card mide mínimo 10rem y máximo 1fr (fracción del espacio restante) */
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1.5rem; /* Un poco más de aire entre cards */
+  padding: 1rem;
+}
+
+.card {
+  background-color: #F2F2F2;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  cursor: pointer; /* Feedback visual para el click */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Para que todas midan lo mismo en la misma fila */
+}
+
+/* Efecto al pasar el mouse */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Opcional: mantiene una proporción fija si tus cartas son rectangulares */
+  object-fit: cover;
+  border-radius: 0.4rem;
+}
+
+.card p {
+  margin-top: 0.8rem;
+  font-size: var(--font-regular);
+  /* Si el texto es muy largo, esto ayuda a que no rompa la card */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
