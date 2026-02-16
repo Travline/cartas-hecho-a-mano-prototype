@@ -1,5 +1,15 @@
+---
+import logo from "../../../public/assets/logo-full-color.png";
+import { Image } from "astro:assets";
+---
+
 <header>
-  <a class="tittle" href="/">Cartas Hechas A Mano</a>
+  <div class="logo-container">
+    <a class="preserved-space">
+      <Image class={"logo"} src={logo} alt={"Logo Cartas Hecho A Mano"} />
+    </a>
+    <a class="tittle" href="/">Cartas Hechas A Mano</a>
+  </div>
 
   <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
 
@@ -47,6 +57,26 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+  }
+
+  .logo-container {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center; 
+  }
+
+  .preserved-space {
+    height: stretch;
+    aspect-ratio: 1 / 1;
+    padding: 0.5rem;
+  }
+
+  .logo {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: stretch;
   }
 
   .tittle {
