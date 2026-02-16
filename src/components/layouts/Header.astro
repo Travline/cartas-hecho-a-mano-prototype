@@ -5,10 +5,10 @@ import { Image } from "astro:assets";
 
 <header>
   <div class="logo-container">
-    <a class="preserved-space">
+    <a class="preserved-space" href="/">
       <Image class={"logo"} src={logo} alt={"Logo Cartas Hecho A Mano"} />
     </a>
-    <a class="tittle" href="/">Cartas Hechas A Mano</a>
+    <a class="logo-title" href="/">Cartas Hecho A Mano</a>
   </div>
 
   <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
@@ -108,8 +108,8 @@ import { Image } from "astro:assets";
 
   /* --- MOBILE (max-width: 768px) --- */
   @media (max-width: 768px) {
-    a .tittle {
-      display: none;
+    .logo-title {
+      display: none !important;
     }
 
     .hamburger {
