@@ -3,21 +3,6 @@
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   gap: 1rem;
   padding: 1rem;
-
-  /* --- NUEVAS PROPIEDADES PARA EL SCROLL --- */
-  height: 500px;            /* O la altura que prefieras (ej. 80vh) */
-  overflow-y: auto;         /* Habilita el scroll vertical solo si es necesario */
-  scrollbar-width: thin;    /* (Opcional) Hace la barra de scroll más estética en Firefox */
-}
-
-/* Opcional: Estilizar la barra de scroll para navegadores Chrome/Edge/Safari */
-.container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.container::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
 }
 
 .card {
@@ -25,7 +10,7 @@
   padding: 0.5rem;
   border-radius: 0.8rem;
   cursor: pointer; /* Feedback visual para el click */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   display: flex;
   flex-direction: column;
   height: 100%; /* Para que todas midan lo mismo en la misma fila */
@@ -35,6 +20,7 @@
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: var(--main-light-accent-color);
 }
 
 .image {

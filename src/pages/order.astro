@@ -1,6 +1,13 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import CardSelectorModal from "../components/ui/CardSelectorModal";
+import CardSelector from "../components/ui/CardSelector";
+import { Image } from "astro:assets";
+import { navigate } from "astro:transitions/client";
+
+const card = Astro.url.searchParams.get("card");
+const API_IMAGES_URL =
+  "https://cartas-hecho-a-mano-back-prototype.vercel.app/cards/img/";
+const imageUrl = `${API_IMAGES_URL}${card}`;
 ---
 
 <MainLayout>
@@ -81,18 +88,26 @@ import CardSelectorModal from "../components/ui/CardSelectorModal";
           </div>
         </div>
 
-        <fieldset class="card-selector">
-          <legend>
-            Elige tu carta preferida
-          </legend>
-          <CardSelectorModal client:visible />
-        </fieldset>
+        <div class="card-selected">
+          <p>Carta Seleccionada</p>
+          <div class="image-container">
+            <img id="card-image" src="" alt={"Carta seleccionada"} />
+          </div>
+        </div>
 
         <button type="submit" class="btn-order">Confirmar Pedido</button>
       </form>
     </div>
   </section>
 </MainLayout>
+
+<script define:vars={{ API_IMAGES_URL }}>
+  const card = new URLSearchParams(window.location.search).get("card");
+  const cardImg = document.getElementById("card-image");
+  if (cardImg) {
+    cardImg.src = `${API_IMAGES_URL}${card}`;
+  }
+</script>
 
 <style>
   .order-section {
@@ -132,17 +147,20 @@ import CardSelectorModal from "../components/ui/CardSelectorModal";
     display: block;
   }
 
-  .card-selector {
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .card-selector legend {
+  .card-selected p {
     font-size: var(--font-semi-big);
     font-weight: 600;
     margin-bottom: 1rem;
     display: block;
+  }
+
+  .image-container {
+    width: 50%;
+  }
+
+  .image-container img {
+    width: stretch;
+    border-radius: 0.5rem;
   }
 
   .pill-options {

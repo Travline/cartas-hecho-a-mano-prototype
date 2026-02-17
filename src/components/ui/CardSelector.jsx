@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import styles from "../../styles/CardSelectorModal.module.css"
+import styles from "../../styles/CardSelector.module.css"
 
-export default function CardSelectorModal() {
+export default function CardSelector() {
   const [data, setData] = useState([{}])
   const [loading, setLoading] = useState(true)
 
@@ -16,17 +16,16 @@ export default function CardSelectorModal() {
       })
   }, [])
 
-  if (loading) { return <p>Está cargando...</p> }
+  if (loading) { return <p align="center" >Cargando cartas...</p> }
 
   return (
     <section className={styles.container}>
       {data.map((card, index) => (
 
-        <div 
+        <a
           key={card.card_id} 
           className={styles.card}
-          onClick={() => alert(`card ${card.card_id} selected`)}
-          role="button"
+          href={`/order?card=${card.card_id}`}
         >
           <img
             className={styles.image}
@@ -36,7 +35,7 @@ export default function CardSelectorModal() {
             fetchPriority="low"
           />
           <p>{card.details}</p>
-        </div>
+        </a>
       ))}
     </section>
   );
