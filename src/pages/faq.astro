@@ -1,9 +1,15 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import FAQItem from "../components/layouts/FAQItem.astro";
+
+export const prerender = true
 ---
 
-<MainLayout>
+<MainLayout
+  title="Preguntas Frecuentes"
+  description="¿Tienes dudas sobre los envíos o el proceso de creación? Aquí respondemos todo sobre nuestras cartas artesanales."
+  image="https://cartas-hecho-a-mano-prototype.vercel.app/assets/logo-full-color-text-bg.png"
+>
   <main class="faq-section">
     <h2>Preguntas Frecuentes</h2>
 

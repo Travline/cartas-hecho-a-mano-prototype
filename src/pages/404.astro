@@ -1,0 +1,33 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
+export const prerender = true
+---
+
+<MainLayout
+  title="Página no encontrada"
+  description="Parece que la carta que buscas se ha perdido en el correo. Regresa al inicio para encontrar otros diseños."
+  image="https://cartas-hecho-a-mano-prototype.vercel.app/assets/logo-full-color-text-bg.png"
+>
+  <main>
+    <h2>Error 404</h2>
+    <p>No se encontró lo que buscabas</p>
+    <ButtonMainColor url="/"> Ir al inicio </ButtonMainColor>
+  </main>
+</MainLayout>
+
+<style>
+  main {
+    height: 100dvh;
+    width: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  h2 {
+    font-size: var(--font-big);
+  }
+</style>

@@ -4,9 +4,11 @@ import Hero from "../components/layouts/Hero.astro"
 import FAQShort from "../components/layouts/FAQShort.astro"
 import Pricing from "../components/layouts/Pricing.astro"
 import WhyUs from "../components/layouts/WhyUs.astro"
+
+export const prerender = true;
 ---
 
-<MainLayout>
+<MainLayout image="/assets/logo-full-color-text-bg.png">
   <Hero></Hero>
   <WhyUs></WhyUs>
   <Pricing></Pricing>
