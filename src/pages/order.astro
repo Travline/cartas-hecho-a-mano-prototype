@@ -3,17 +3,17 @@ import MainLayout from "../layouts/MainLayout.astro";
 import CardSelector from "../components/ui/CardSelector";
 import { Image } from "astro:assets";
 import { navigate } from "astro:transitions/client";
+import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
 
-const card = Astro.url.searchParams.get("card");
-const API_IMAGES_URL =
-  "https://cartas-hecho-a-mano-back-prototype.vercel.app/cards/img/";
-const imageUrl = `${API_IMAGES_URL}${card}`;
+export const prerender = false
+
+const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un motivo de carta" ;
 ---
 
 <MainLayout>
   <section class="order-section">
     <div class="order-container">
-      <h2>Personaliza tu entrega</h2>
+      <h2>{reason.replace("%20"," ")}</h2>
 
       <form class="order-form">
         <fieldset class="pill-group">
@@ -41,21 +41,9 @@ const imageUrl = `${API_IMAGES_URL}${card}`;
         <div id="mensaje-container" class="text-area-container">
           <label for="mensaje">Escribe tu mensaje aquí:</label>
           <textarea id="mensaje" placeholder="Querido/a..."></textarea>
+          <span id="word-count">0 palabras</span>
+          <span>Trate de mantenerse por debajo de 65</span>
         </div>
-
-        <fieldset class="pill-group">
-          <legend>Zona de Envío</legend>
-          <div class="pill-options">
-            <input type="radio" name="envio" id="lima" checked />
-            <label for="lima">Lima</label>
-
-            <input type="radio" name="envio" id="provincia" />
-            <label for="provincia">Provincia</label>
-
-            <input type="radio" name="envio" id="inter" />
-            <label for="inter">Internacional</label>
-          </div>
-        </fieldset>
 
         <div class="shipping-fields">
           <div class="input-group">
@@ -87,27 +75,11 @@ const imageUrl = `${API_IMAGES_URL}${card}`;
             />
           </div>
         </div>
-
-        <div class="card-selected">
-          <p>Carta Seleccionada</p>
-          <div class="image-container">
-            <img id="card-image" src="" alt={"Carta seleccionada"} />
-          </div>
-        </div>
-
-        <button type="submit" class="btn-order">Confirmar Pedido</button>
+        <ButtonMainColor id="sendWhatsapp">Confirmar Pedido</ButtonMainColor>
       </form>
     </div>
   </section>
 </MainLayout>
-
-<script define:vars={{ API_IMAGES_URL }}>
-  const card = new URLSearchParams(window.location.search).get("card");
-  const cardImg = document.getElementById("card-image");
-  if (cardImg) {
-    cardImg.src = `${API_IMAGES_URL}${card}`;
-  }
-</script>
 
 <style>
   .order-section {
@@ -121,7 +93,6 @@ const imageUrl = `${API_IMAGES_URL}${card}`;
   }
 
   h2 {
-    font-family: "Quintessential", serif;
     font-size: var(--font-big);
     text-align: center;
     margin-bottom: 3rem;
@@ -222,6 +193,11 @@ const imageUrl = `${API_IMAGES_URL}${card}`;
     resize: vertical;
   }
 
+  .text-area-container span {
+    text-align: right;
+    color: #666
+  }
+
   .help-text {
     font-size: 0.85rem;
     color: #64748b;
@@ -292,6 +268,60 @@ const imageUrl = `${API_IMAGES_URL}${card}`;
 </style>
 
 <script>
+  const btn = document.getElementById('sendWhatsapp');
+  const form = document.querySelector('.order-form'); // Seleccionamos el formulario
+  
+  const radioRedactar = document.getElementById('redactar') as HTMLInputElement;
+  const inputMensaje = document.getElementById('mensaje') as HTMLTextAreaElement;
+  const inputDestinatario = document.getElementById('destinatario') as HTMLInputElement;
+  const inputDireccion = document.getElementById('direccion') as HTMLInputElement;
+  const inputReferencia = document.getElementById('referencia') as HTMLInputElement;
+
+  btn?.addEventListener('click', (e) => {
+    // 1. IMPORTANTE: Evita que el formulario recargue la página o cambie la URL
+    e.preventDefault();
+
+    // 2. Validaciones básicas obligatorias
+    if (!inputDestinatario.value.trim() || !inputDireccion.value.trim()) {
+      alert("Por favor, completa el nombre del destinatario y la dirección.");
+      return;
+    }
+
+    // 3. Validación específica para "Redactar"
+    if (radioRedactar.checked && !inputMensaje.value.trim()) {
+      alert("Has seleccionado 'Redactar Carta', por favor escribe un mensaje.");
+      inputMensaje.focus(); // Pone el cursor en el textarea
+      return;
+    }
+
+    // 4. Construcción del mensaje (Lógica anterior)
+    const phone = "51992379259";
+    const urlParams = new URLSearchParams(window.location.search);
+    const motivo = (urlParams.get('reason') || "No especificado").trim();
+
+    let seccionContenido = "";
+    if (radioRedactar.checked) {
+      seccionContenido = `Contenido:\n${inputMensaje.value.trim()}`;
+    } else {
+      seccionContenido = `Contenido: Sugiérame un texto`;
+    }
+
+    let seccionDatos = `Datos:\nDestinatario: ${inputDestinatario.value.trim()}\nDirección: ${inputDireccion.value.trim()}`;
+    
+    const referencia = inputReferencia.value.trim();
+    if (referencia) {
+      seccionDatos += `\nReferencia: ${referencia}`;
+    }
+
+    const mensajeCompleto = `Motivo: ${motivo}\n\n${seccionContenido}\n\n${seccionDatos}`;
+
+    // 5. Enviar a WhatsApp
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(mensajeCompleto)}`;
+    window.open(whatsappUrl, '_blank');
+  });
+</script>
+
+<script>
   // Esta función envuelve todo para que corra solo cuando el HTML esté listo
   document.addEventListener("DOMContentLoaded", () => {
     const radios = document.querySelectorAll('input[name="redaccion"]');
@@ -317,5 +347,25 @@ const imageUrl = `${API_IMAGES_URL}${card}`;
       'input[name="redaccion"]:checked',
     ) as HTMLInputElement;
     if (checkedRadio) toggleContainer(checkedRadio.value);
+  });
+</script>
+
+<script>
+  const textarea = document.getElementById('mensaje');
+  const MAX_WORDS = 65;
+
+  textarea?.addEventListener('input', (e) => {
+    const target = e.target as HTMLTextAreaElement;
+    const text = target.value;
+
+    // 1. Limpiamos el texto para contar palabras reales:
+    // .trim() quita espacios extremos
+    // .split(/\s+/) divide por cualquier espacio en blanco (espacio, tab, salto de línea)
+    // .filter(Boolean) elimina elementos vacíos de la lista si hay múltiples espacios
+    const words = text.trim().split(/\s+/).filter(Boolean);
+    const wordCount = words.length;
+
+    const counterDisplay = document.getElementById('word-count');
+    if (counterDisplay) counterDisplay.textContent = `${wordCount} palabras`;
   });
 </script>

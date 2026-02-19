@@ -1,6 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-
+import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
 export const prerender = true;
 ---
 
@@ -14,12 +14,14 @@ export const prerender = true;
     <section class="steps">
       <p>Para realizar un pedido completa nuestro formulario siguiendo estos pasos:</p>
       <ul>
+        <li>Elige el motivo que mejor describa lo que quieras transmitir</li>
         <li>Elige redactar tu carta o pedir una sugerencia.</li>
         <li>Brindanos el nombre completo del destinatario.</li>
         <li>La dirección exacta de envío.</li>
         <li>Una referencia del lugar donde será recibido.</li>
         <li>Dale a "Hacer pedido" y te llevará a WhatsApp con los datos ingresados para establecer <strong>comunicación eficiente.</strong></li>
       </ul>
+      <ButtonMainColor url="/reason">Empieza ahora</ButtonMainColor>
     </section>
     <section class="special-orders">
       <p>Si necesitas algo especial como varias cartas o envíos internacionales, ponte en contacto con nostros. Estamos atentos a su solicitud</p>

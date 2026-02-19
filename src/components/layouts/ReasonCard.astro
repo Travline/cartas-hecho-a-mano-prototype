@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+
+const { imgSrc, imgAlt, reason } = Astro.props;
+---
+
+<a href={`/order?reason=${reason.replace(" ","%20")}`} class="card">
+  <div class="reason-container">
+    <p>
+      {reason}
+    </p>
+  </div>
+  <img class="card-image" src=`${imgSrc}` alt=`${imgAlt}` />
+</a>
+
+<style>
+  .card {
+    background-color: #f2f2f2;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    text-decoration: none; /* Elimina subrayado del link */
+    color: inherit; /* Mantiene el color del texto */
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--main-light-accent-color, #e0e0e0);
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.4rem;
+  }
+
+  .reason-container {
+    display: flex;
+    flex-direction: column;
+    width: stretch;
+    height: stretch;
+    justify-content: center;
+    align-items: center;
+  }
+
+  p {
+    text-align: center;
+  }
+</style>
