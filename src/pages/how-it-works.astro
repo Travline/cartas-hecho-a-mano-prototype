@@ -11,21 +11,21 @@ export const prerender = true;
 >
   <main>
     <h2>¿Como hago mi pedido?</h2>
-    <section>
+    <section class="steps">
       <p>Para realizar un pedido completa nuestro formulario siguiendo estos pasos:</p>
       <ul>
         <li>Elige redactar tu carta o pedir una sugerencia.</li>
         <li>Brindanos el nombre completo del destinatario.</li>
         <li>La dirección exacta de envío.</li>
         <li>Una referencia del lugar donde será recibido.</li>
-        <li>Dale a "Hacer pedido" y te llevará a WhatsApp con los datos ingresados para establecer comunicación eficiente.</li>
+        <li>Dale a "Hacer pedido" y te llevará a WhatsApp con los datos ingresados para establecer <strong>comunicación eficiente.</strong></li>
       </ul>
     </section>
-    <section>
+    <section class="special-orders">
       <p>Si necesitas algo especial como varias cartas o envíos internacionales, ponte en contacto con nostros. Estamos atentos a su solicitud</p>
       <ul>
-        <li><a href="">Ecríbenos a WhatsApp</a></li>
-        <li><a href="">Envianos un correo</a></li>
+        <li>Ecríbenos a <a href=""><strong>WhatsApp</strong></a></li>
+        <li>Envíanos un <a href=""><strong>correo</strong></a></li>
       </ul>
     </section>
   </main>
@@ -47,6 +47,12 @@ export const prerender = true;
     font-size: var(--font-big);
   }
 
+  p {
+    font-size: var(--font-semi-big);
+    font-weight: 500;
+  
+  }
+
   section {
     height: stretch;
     display: flex;
@@ -54,5 +60,23 @@ export const prerender = true;
     justify-content: center;
     max-width: 800px;
     width: 100%;
+    padding: 0 2rem;
+    gap: 1rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  ul li {
+    list-style: disc;
+    margin: 0 2rem;
+  }
+
+  .special-orders ul li a {
+    color: var(--main-accent-color);
+    text-decoration: underline;
   }
 </style>
