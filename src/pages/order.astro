@@ -5,15 +5,20 @@ import { Image } from "astro:assets";
 import { navigate } from "astro:transitions/client";
 import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
 
-export const prerender = false
+export const prerender = false;
 
-const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un motivo de carta" ;
+const reason: any =
+  Astro.url.searchParams.get("reason") || "No se escogió un motivo de carta";
 ---
 
-<MainLayout>
+<MainLayout
+  title="Llena los datos para el pedido"
+  description="Elige si redactar tu carta o pedir un texto sugerido, agrega los datos y envíalos, así de simple tendrás tu carta"
+  image="https://cartas-hecho-a-mano-prototype.vercel.app/assets/logo-full-color-text-bg.png"
+>
   <section class="order-section">
     <div class="order-container">
-      <h2>{reason.replace("%20"," ")}</h2>
+      <h2>{reason.replace("%20", " ")}</h2>
 
       <form class="order-form">
         <fieldset class="pill-group">
@@ -195,7 +200,7 @@ const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un m
 
   .text-area-container span {
     text-align: right;
-    color: #666
+    color: #666;
   }
 
   .help-text {
@@ -268,16 +273,24 @@ const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un m
 </style>
 
 <script>
-  const btn = document.getElementById('sendWhatsapp');
-  const form = document.querySelector('.order-form'); // Seleccionamos el formulario
-  
-  const radioRedactar = document.getElementById('redactar') as HTMLInputElement;
-  const inputMensaje = document.getElementById('mensaje') as HTMLTextAreaElement;
-  const inputDestinatario = document.getElementById('destinatario') as HTMLInputElement;
-  const inputDireccion = document.getElementById('direccion') as HTMLInputElement;
-  const inputReferencia = document.getElementById('referencia') as HTMLInputElement;
+  const btn = document.getElementById("sendWhatsapp");
+  const form = document.querySelector(".order-form"); // Seleccionamos el formulario
 
-  btn?.addEventListener('click', (e) => {
+  const radioRedactar = document.getElementById("redactar") as HTMLInputElement;
+  const inputMensaje = document.getElementById(
+    "mensaje",
+  ) as HTMLTextAreaElement;
+  const inputDestinatario = document.getElementById(
+    "destinatario",
+  ) as HTMLInputElement;
+  const inputDireccion = document.getElementById(
+    "direccion",
+  ) as HTMLInputElement;
+  const inputReferencia = document.getElementById(
+    "referencia",
+  ) as HTMLInputElement;
+
+  btn?.addEventListener("click", (e) => {
     // 1. IMPORTANTE: Evita que el formulario recargue la página o cambie la URL
     e.preventDefault();
 
@@ -297,7 +310,7 @@ const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un m
     // 4. Construcción del mensaje (Lógica anterior)
     const phone = "51992379259";
     const urlParams = new URLSearchParams(window.location.search);
-    const motivo = (urlParams.get('reason') || "No especificado").trim();
+    const motivo = (urlParams.get("reason") || "No especificado").trim();
 
     let seccionContenido = "";
     if (radioRedactar.checked) {
@@ -307,7 +320,7 @@ const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un m
     }
 
     let seccionDatos = `Datos:\nDestinatario: ${inputDestinatario.value.trim()}\nDirección: ${inputDireccion.value.trim()}`;
-    
+
     const referencia = inputReferencia.value.trim();
     if (referencia) {
       seccionDatos += `\nReferencia: ${referencia}`;
@@ -317,7 +330,7 @@ const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un m
 
     // 5. Enviar a WhatsApp
     const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(mensajeCompleto)}`;
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
   });
 </script>
 
@@ -351,10 +364,10 @@ const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un m
 </script>
 
 <script>
-  const textarea = document.getElementById('mensaje');
+  const textarea = document.getElementById("mensaje");
   const MAX_WORDS = 65;
 
-  textarea?.addEventListener('input', (e) => {
+  textarea?.addEventListener("input", (e) => {
     const target = e.target as HTMLTextAreaElement;
     const text = target.value;
 
@@ -365,7 +378,7 @@ const reason: any = Astro.url.searchParams.get("reason") || "No se escogió un m
     const words = text.trim().split(/\s+/).filter(Boolean);
     const wordCount = words.length;
 
-    const counterDisplay = document.getElementById('word-count');
+    const counterDisplay = document.getElementById("word-count");
     if (counterDisplay) counterDisplay.textContent = `${wordCount} palabras`;
   });
 </script>
