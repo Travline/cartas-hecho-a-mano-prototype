@@ -1,9 +1,58 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 
-export const prerender = true
+export const prerender = true;
 ---
 
-<MainLayout>
-  
+<MainLayout
+  title="Cómo pedir tu carta personalizada"
+  description="Descubre lo fácil que es enviar un detalle inolvidable. Elige tu diseño, personaliza el mensaje y nosotros escribimos tu carta a mano con pluma fuente. ¡Haz tu pedido hoy!"
+  image="/assets/logo-full-color-text-bg.png"
+>
+  <main>
+    <h2>¿Como hago mi pedido?</h2>
+    <section>
+      <p>Para realizar un pedido completa nuestro formulario siguiendo estos pasos:</p>
+      <ul>
+        <li>Elige redactar tu carta o pedir una sugerencia.</li>
+        <li>Brindanos el nombre completo del destinatario.</li>
+        <li>La dirección exacta de envío.</li>
+        <li>Una referencia del lugar donde será recibido.</li>
+        <li>Dale a "Hacer pedido" y te llevará a WhatsApp con los datos ingresados para establecer comunicación eficiente.</li>
+      </ul>
+    </section>
+    <section>
+      <p>Si necesitas algo especial como varias cartas o envíos internacionales, ponte en contacto con nostros. Estamos atentos a su solicitud</p>
+      <ul>
+        <li><a href="">Ecríbenos a WhatsApp</a></li>
+        <li><a href="">Envianos un correo</a></li>
+      </ul>
+    </section>
+  </main>
 </MainLayout>
+
+<style>
+  main {
+    min-height: 100dvh;
+    width: stretch;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  h2 {
+    font-size: var(--font-big);
+  }
+
+  section {
+    height: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 800px;
+    width: 100%;
+  }
+</style>

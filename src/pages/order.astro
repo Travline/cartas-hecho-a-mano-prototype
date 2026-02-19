@@ -1,0 +1,321 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import CardSelector from "../components/ui/CardSelector";
+import { Image } from "astro:assets";
+import { navigate } from "astro:transitions/client";
+
+const card = Astro.url.searchParams.get("card");
+const API_IMAGES_URL =
+  "https://cartas-hecho-a-mano-back-prototype.vercel.app/cards/img/";
+const imageUrl = `${API_IMAGES_URL}${card}`;
+---
+
+<MainLayout>
+  <section class="order-section">
+    <div class="order-container">
+      <h2>Personaliza tu entrega</h2>
+
+      <form class="order-form">
+        <fieldset class="pill-group">
+          <legend>¿Cómo quieres el contenido?</legend>
+          <div class="pill-options">
+            <input
+              type="radio"
+              value="redactar"
+              name="redaccion"
+              id="redactar"
+              checked
+            />
+            <label for="redactar">Redactar Carta</label>
+
+            <input
+              type="radio"
+              value="sugerido"
+              name="redaccion"
+              id="sugerido"
+            />
+            <label for="sugerido">Texto Sugerido</label>
+          </div>
+        </fieldset>
+
+        <div id="mensaje-container" class="text-area-container">
+          <label for="mensaje">Escribe tu mensaje aquí:</label>
+          <textarea id="mensaje" placeholder="Querido/a..."></textarea>
+        </div>
+
+        <fieldset class="pill-group">
+          <legend>Zona de Envío</legend>
+          <div class="pill-options">
+            <input type="radio" name="envio" id="lima" checked />
+            <label for="lima">Lima</label>
+
+            <input type="radio" name="envio" id="provincia" />
+            <label for="provincia">Provincia</label>
+
+            <input type="radio" name="envio" id="inter" />
+            <label for="inter">Internacional</label>
+          </div>
+        </fieldset>
+
+        <div class="shipping-fields">
+          <div class="input-group">
+            <label for="destinatario">Nombre del Destinatario</label>
+            <input
+              type="text"
+              id="destinatario"
+              placeholder="Nombre completo"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="direccion">Dirección exacta</label>
+            <input
+              type="text"
+              id="direccion"
+              placeholder="Av. Siempre viva 123..."
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="referencia">Añade una referencia</label>
+            <input
+              type="text"
+              id="referencia"
+              placeholder="Frente al parque..."
+            />
+          </div>
+        </div>
+
+        <div class="card-selected">
+          <p>Carta Seleccionada</p>
+          <div class="image-container">
+            <img id="card-image" src="" alt={"Carta seleccionada"} />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-order">Confirmar Pedido</button>
+      </form>
+    </div>
+  </section>
+</MainLayout>
+
+<script define:vars={{ API_IMAGES_URL }}>
+  const card = new URLSearchParams(window.location.search).get("card");
+  const cardImg = document.getElementById("card-image");
+  if (cardImg) {
+    cardImg.src = `${API_IMAGES_URL}${card}`;
+  }
+</script>
+
+<style>
+  .order-section {
+    padding: 6rem 2rem 4rem 2rem;
+    background-color: white;
+  }
+
+  .order-container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-family: "Quintessential", serif;
+    font-size: var(--font-big);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* ESTILO DE PASTILLAS (Pills) */
+  .pill-group {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pill-group legend {
+    font-size: var(--font-semi-big);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card-selected p {
+    font-size: var(--font-semi-big);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .image-container {
+    width: 50%;
+  }
+
+  .image-container img {
+    width: stretch;
+    border-radius: 0.5rem;
+  }
+
+  .pill-options {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--main-light-accent-color);
+    padding: 0.4rem;
+    border-radius: 50px;
+    width: fit-content;
+  }
+
+  .pill-options input[type="radio"] {
+    display: none; /* Escondemos el radio original */
+  }
+
+  .pill-options label {
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: var(--font-regular);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  /* Estado seleccionado de la pastilla */
+  .pill-options input[type="radio"]:checked + label {
+    background-color: var(--main-accent-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* LÓGICA DE OCULTAR CAMPO DE TEXTO */
+  /* Si el radio 'sugerido' está marcado, escondemos el contenedor del textarea */
+  #sugerido:checked ~ .text-area-container {
+    display: none;
+  }
+
+  .text-area-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .text-area-container label,
+  .shipping-fields label {
+    font-size: var(--font-regular);
+    font-weight: 600;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.8rem;
+    font-family: inherit;
+    font-size: var(--font-regular);
+    resize: vertical;
+  }
+
+  .help-text {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+  }
+
+  /* CAMPOS DE ENVÍO */
+  .shipping-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  input[type="text"] {
+    padding: 0.8rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: var(--font-regular);
+  }
+
+  .btn-order {
+    padding: 1rem 1.5rem;
+    background-color: var(--main-accent-color);
+    color: white;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-order:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+  }
+  .btn-order:active {
+    transform: scale(0.98);
+    filter: brightness(1.1);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .shipping-fields {
+      grid-template-columns: 1fr;
+    }
+
+    .pill-options {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .pill-options label {
+      flex: 1;
+      text-align: center;
+      padding: 0.6rem 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  // Esta función envuelve todo para que corra solo cuando el HTML esté listo
+  document.addEventListener("DOMContentLoaded", () => {
+    const radios = document.querySelectorAll('input[name="redaccion"]');
+    const container = document.getElementById("mensaje-container");
+
+    // Función interna para cambiar el estilo
+    const toggleContainer = (valor: string) => {
+      if (container) {
+        container.style.display = valor === "sugerido" ? "none" : "flex";
+      }
+    };
+
+    // Escuchamos el cambio en cada radio
+    radios.forEach((radio) => {
+      radio.addEventListener("change", (e) => {
+        const el = e.target as HTMLInputElement;
+        toggleContainer(el.value);
+      });
+    });
+
+    // Ejecución inicial por si el navegador recuerda el estado al recargar
+    const checkedRadio = document.querySelector(
+      'input[name="redaccion"]:checked',
+    ) as HTMLInputElement;
+    if (checkedRadio) toggleContainer(checkedRadio.value);
+  });
+</script>
