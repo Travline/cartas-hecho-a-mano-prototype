@@ -1,0 +1,38 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const API_URL = "https://cartas-hecho-a-mano-back-prototype.vercel.app";
+
+let data = [];
+let errorOccurred = false;
+
+try {
+  const response = await fetch(`${API_URL}/cards/img`);
+  
+  if (response.ok) {
+    data = await response.json();
+  } else {
+    errorOccurred = true;
+  }
+} catch (error) {
+  console.error("Error cargando cartas:", error);
+  errorOccurred = true;
+}
+
+// Lógica de "Early Return" para el 404
+if (errorOccurred || data.length === 0) {
+  return Astro.redirect('/404'); 
+}
+---
+
+<MainLayout>
+  <div class="grid-container">
+    {data.map((card: any) => (
+      <img 
+        src={`${API_URL}/cards/img/${card.img_id}`} 
+        alt="Carta artesanal"
+        loading="lazy" 
+      />
+    ))}
+  </div>
+</MainLayout>

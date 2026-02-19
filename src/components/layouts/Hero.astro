@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import heroImg from "../../../public/assets/hero-image.jpeg";
+import heroImg from "../../../public/assets/hero-image.webp";
 import ButtonMainColor from "../layouts/ButtonMainColor.astro";
 ---
 
@@ -16,11 +16,11 @@ import ButtonMainColor from "../layouts/ButtonMainColor.astro";
       <h1>Cartas hechas a mano</h1>
       <hr />
       <ul>
-        <li>Envía tu carta a la persona que mas quieras</li>
-        <li>Personaliza tu carta y no dejes de sorprenderlos</li>
-        <li>Cartas únicas realizadas a mano con una pluma fuente</li>
-        <li>Cuidamos cada detalle para sorprender a tus seres queridos</li>
-        <li>Alegra el día a quien más quieras</li>
+        <li>✓ <strong>Envía</strong> amor a tu persona favorita 💌</li>
+        <li>✓ <strong>Personaliza</strong> cada detalle y sorprende ✨</li>
+        <li>✓ <strong>Únicas</strong>, hechas a mano con pluma fuente</li>
+        <li>✓ <strong>Detalles impecables</strong> para tus seres queridos</li>
+        <li>✓ <strong>Alegra</strong> el día con un gesto inolvidable 🌟</li>
       </ul>
       <ButtonMainColor url={"/cards"} class={"hero-button"}>
         Ver Cartas
@@ -36,10 +36,16 @@ import ButtonMainColor from "../layouts/ButtonMainColor.astro";
   .hero-container {
     background-color: var(--main-light-accent-color);
     width: stretch;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .hero-content {
-    padding: 5rem 2rem 3rem 2rem;
+    height: stretch;
+    padding: 0 2rem 0 2rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -47,7 +53,6 @@ import ButtonMainColor from "../layouts/ButtonMainColor.astro";
     gap: 2rem;
 
     max-width: 1200px;
-    margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
   }
