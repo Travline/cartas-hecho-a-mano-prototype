@@ -49,17 +49,20 @@
   .main-footer {
     background-color: var(--gray-accent-color);
     margin: 0;
-    padding: 4rem 0 2rem 0; /* Un poco más de aire arriba */
+    /* Reducimos padding para mobile por defecto y lo subimos en desktop */
+    padding: 2.5rem 0 1.5rem 0; 
     color: white;
-    font-family: inherit; /* Mantiene tu fuente por defecto */
+    font-family: inherit;
   }
 
   .footer-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem; /* Gap más pequeño */
   }
 
   /* --- MARCA Y TEXTOS --- */
@@ -69,28 +72,29 @@
 
   .footer-brand h2 {
     font-size: var(--font-big);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     color: white;
   }
 
   .footer-brand p {
     color: rgba(255, 255, 255, 0.7);
     font-size: var(--font-regular);
-    line-height: 1.5;
+    line-height: 1.4;
+    margin: 0;
   }
 
   /* --- CONTACTO --- */
   .footer-contact {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.5rem;
     flex: 1 1 200px;
   }
 
   .footer-contact h3,
   .footer-social h3 {
     font-size: var(--font-semi-big);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Menos espacio bajo el título */
     color: white;
     font-weight: 600;
   }
@@ -103,12 +107,7 @@
     transition: color 0.2s ease;
   }
 
-  .footer-contact a:hover {
-    color: var(--main-accent-color);
-    text-decoration: underline;
-  }
-
-  /* --- REDES SOCIALES (Estilo Estampita) --- */
+  /* --- REDES SOCIALES --- */
   .footer-social {
     display: flex;
     flex-direction: column;
@@ -118,7 +117,7 @@
 
   .social-icons {
     display: flex;
-    gap: 1.2rem;
+    gap: 1rem;
     padding-top: 0.5rem;
   }
 
@@ -126,29 +125,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 42px; /* Ligeramente más pequeños para mobile */
+    height: 42px;
     background-color: rgba(255, 255, 255, 0.05);
-    border: 3px dotted rgba(255, 255, 255, 0.3); /* Efecto dentado */
+    border: 2px dotted rgba(255, 255, 255, 0.3);
     border-radius: 4px;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    text-decoration: none;
+    transition: all 0.3s ease;
   }
 
   .social-icons svg {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     fill: white;
-    transition: fill 0.3s ease;
   }
 
-  /* Efecto Hover Estampita */
   .social-icons a:hover {
-    transform: translateY(-5px) rotate(5deg); /* Efecto de sello pegado */
+    transform: translateY(-3px) rotate(5deg);
     background-color: white;
     border-color: var(--main-accent-color);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 
   .social-icons a:hover svg {
@@ -158,22 +152,40 @@
   /* --- LÍNEA INFERIOR --- */
   .footer-bottom {
     text-align: center;
-    margin-top: 4rem;
-    padding: 2rem 2rem 0 2rem;
+    margin-top: 2rem; /* Reducido de 4rem */
+    padding: 1.5rem 1rem 0 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .footer-bottom p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     opacity: 0.5;
-    margin: 0;
   }
 
-  /* --- RESPONSIVE --- */
+  /* --- RESPONSIVE CORREGIDO --- */
+  @media (min-width: 769px) {
+    .main-footer {
+      padding: 4rem 0 2rem 0;
+    }
+    .footer-bottom {
+      margin-top: 4rem;
+    }
+    .social-icons a {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
   @media (max-width: 768px) {
     .footer-container {
       flex-direction: column;
       text-align: center;
+      gap: 2rem; /* Espaciado uniforme */
+    }
+
+    .footer-brand, .footer-contact, .footer-social {
+      flex: 1 1 auto; /* Permite que ocupen solo lo necesario */
+      width: 100%;
     }
 
     .footer-social {
@@ -183,10 +195,9 @@
     .social-icons {
       justify-content: center;
     }
-
-    .footer-brand, 
-    .footer-contact {
-      width: 100%;
+    
+    .footer-brand h2 {
+      font-size: 1.5rem; /* Forzamos tamaño más pequeño en mobile si var es muy grande */
     }
   }
 </style>
