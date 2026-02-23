@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import heroImg from "../../../public/assets/hero-image.webp";
+import heroImg from "../../../public/assets/pareja-ancianos-felices-mirando-hoja-papel-leyendo-carta-noticias-agradables-sonriendo-marido-mujer-mediana-edad-sosteniendo-correspondencia-correo-o-contra.png";
 import ButtonMainColor from "../layouts/ButtonMainColor.astro";
 ---
 
@@ -26,7 +26,10 @@ import ButtonMainColor from "../layouts/ButtonMainColor.astro";
         Pídela Ahora
       </ButtonMainColor>
       <p>
-        Recibir una carta manuscrita es algo <strong>excepcional</strong> que tus familiares, amigos y clientes <strong>valorarán, recordarán y contarán</strong> a todo el mundo.
+        Recibir una carta manuscrita es algo <strong>excepcional</strong> que tus
+        familiares, amigos y clientes <strong
+          >valorarán, recordarán y contarán</strong
+        > a todo el mundo.
       </p>
     </section>
   </section>
@@ -66,6 +69,24 @@ import ButtonMainColor from "../layouts/ButtonMainColor.astro";
   }
 
   .banner-text {
+    /* Color de fondo crema tipo papel antiguo */
+    background-color: #fdfaf3;
+
+    /* Líneas horizontales sepia */
+    background-image: linear-gradient(#e4d5b7 1px, transparent 1px);
+    background-size: 100% 1rem;
+
+    /* Sombra suave para dar profundidad de "hoja" */
+    box-shadow:
+      0 4px 15px rgba(0, 0, 0, 0.05),
+      0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+
+    /* Tipografía que combine */
+    color: #4a443a;
+
+    padding: 1rem;
+
     flex: 1 1 300px;
     display: flex;
     flex-direction: column;
@@ -81,7 +102,7 @@ import ButtonMainColor from "../layouts/ButtonMainColor.astro";
     border: 0;
     border-top: 3px solid var(--gray-accent-color);
     width: 25%;
-    margin: 1.25rem 0;
+    margin: 1rem 0;
     border-radius: 5px;
   }
 
@@ -98,7 +119,6 @@ import ButtonMainColor from "../layouts/ButtonMainColor.astro";
   @media (max-width: 768px) {
     .hero-container {
       flex-direction: column;
-      margin-top: 4rem;
     }
 
     .banner-img {
