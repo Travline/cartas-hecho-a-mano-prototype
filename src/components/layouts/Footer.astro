@@ -45,11 +45,13 @@
 </footer>
 
 <style>
+  /* --- FOOTER BASE --- */
   .main-footer {
     background-color: var(--gray-accent-color);
     margin: 0;
-    padding: 3rem 0 2rem 0;
+    padding: 4rem 0 2rem 0; /* Un poco más de aire arriba */
     color: white;
+    font-family: inherit; /* Mantiene tu fuente por defecto */
   }
 
   .footer-container {
@@ -59,89 +61,133 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 2rem;
+    gap: 3rem;
   }
 
-  /* Títulos con tus variables */
+  /* --- MARCA Y TEXTOS --- */
+  .footer-brand {
+    flex: 1 1 300px;
+  }
+
   .footer-brand h2 {
     font-size: var(--font-big);
     margin-bottom: 1rem;
     color: white;
   }
 
-  .footer-contact h3,
-  .footer-social h3 {
-    font-size: var(--font-semi-big);
-    margin-bottom: 1.5rem;
-    color: white;
-  }
-
-  .footer-brand p,
-  .footer-contact p,
-  .footer-contact a {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
+  .footer-brand p {
+    color: rgba(255, 255, 255, 0.7);
     font-size: var(--font-regular);
+    line-height: 1.5;
   }
 
+  /* --- CONTACTO --- */
   .footer-contact {
     display: flex;
     flex-direction: column;
+    gap: 0.8rem;
+    flex: 1 1 200px;
+  }
+
+  .footer-contact h3,
+  .footer-social h3 {
+    font-size: var(--font-semi-big);
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: 600;
+  }
+
+  .footer-contact a,
+  .footer-contact p {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: var(--font-regular);
+    transition: color 0.2s ease;
   }
 
   .footer-contact a:hover {
-    color: white;
+    color: var(--main-accent-color);
     text-decoration: underline;
   }
 
-  /* Contenedor de iconos */
+  /* --- REDES SOCIALES (Estilo Estampita) --- */
   .footer-social {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex: 1 1 200px;
   }
 
   .social-icons {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.2rem;
+    padding-top: 0.5rem;
+  }
+
+  .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 3px dotted rgba(255, 255, 255, 0.3); /* Efecto dentado */
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
   }
 
   .social-icons svg {
-    width: 28px;
-    height: 28px;
-    fill: white; /* Blanco sólido solicitado */
-    transition:
-      transform 0.2s ease,
-      fill 0.2s ease;
+    width: 22px;
+    height: 22px;
+    fill: white;
+    transition: fill 0.3s ease;
+  }
+
+  /* Efecto Hover Estampita */
+  .social-icons a:hover {
+    transform: translateY(-5px) rotate(5deg); /* Efecto de sello pegado */
+    background-color: white;
+    border-color: var(--main-accent-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 
   .social-icons a:hover svg {
-    transform: translateY(-3px);
-    fill: var(--main-accent-color); /* Toque de color de tu marca al hover */
+    fill: var(--main-accent-color);
   }
 
-  /* Línea final */
+  /* --- LÍNEA INFERIOR --- */
   .footer-bottom {
     text-align: center;
-    margin-top: 2rem;
-    padding-top: 2rem;
+    margin-top: 4rem;
+    padding: 2rem 2rem 0 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.85rem;
-    opacity: 0.6;
   }
 
-  /* Responsive */
+  .footer-bottom p {
+    font-size: 0.85rem;
+    opacity: 0.5;
+    margin: 0;
+  }
+
+  /* --- RESPONSIVE --- */
   @media (max-width: 768px) {
     .footer-container {
       flex-direction: column;
       text-align: center;
+      gap: 3rem;
     }
 
     .footer-social {
       align-items: center;
     }
 
-    .footer-brand,
+    .social-icons {
+      justify-content: center;
+    }
+
+    .footer-brand, 
     .footer-contact {
       width: 100%;
     }
