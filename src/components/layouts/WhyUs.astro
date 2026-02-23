@@ -2,130 +2,161 @@
 import { Image } from "astro:assets";
 import featureImg from "../../../public/assets/why-us-image.webp"; // Cambia la ruta a tu imagen
 ---
-<section class="why-us">
+
+<section class="why-us" aria-labelledby="why-us-title">
   <div class="container">
-    <h2 class="section-title">¿Por qué confiar tu mensaje a nosotros?</h2>
-    
+    <h2 id="why-us-title" class="section-title">
+      ¿Por qué confiar tu mensaje a nosotros?
+    </h2>
+
     <div class="bento-grid">
-      <div class="bento-item main-img">
-        <Image src={featureImg} alt="Sello de lacre artesanal" />
-      </div>
+      <figure class="bento-item col-4 row-2 main-img">
+        <Image src={featureImg} alt="Sello de lacre artesanal" loading="lazy" />
+      </figure>
 
-      <div class="bento-item featured">
+      <article class="bento-item col-4 featured">
         <h3>Privacidad bajo sello lacrado</h3>
-        <p>Cada carta es protegida por un sello de cera auténtico, garantizando que solo el destinatario descubra su contenido.</p>
-      </div>
+        <p>
+          Cada carta es protegida por un sello de cera auténtico, garantizando
+          que solo el destinatario descubra su contenido.
+        </p>
+      </article>
 
-      <div class="bento-item">
+      <article class="bento-item col-4">
         <h3>Tú pones el sentimiento</h3>
-        <p>¿No sabes por dónde empezar? Te asesoramos para encontrar las palabras perfectas o transcribimos tu mensaje.</p>
-      </div>
+        <p>
+          Te asesoramos para encontrar las palabras perfectas o transcribimos
+          fielmente tu mensaje.
+        </p>
+      </article>
 
-      <div class="bento-item wide">
-        <div class="wide-content">
-          <h3>Un legado tangible</h3>
-          <p>A diferencia de lo digital, nuestras cartas están hechas para ser guardadas en una caja de recuerdos por generaciones.</p>
-        </div>
-      </div>
+      <article class="bento-item col-8">
+        <h3>Un legado tangible</h3>
+        <p>
+          A diferencia de lo digital, nuestras cartas están hechas para ser
+          guardadas en una caja de recuerdos por generaciones.
+        </p>
+      </article>
 
-      <div class="bento-item">
+      <article class="bento-item col-6">
         <h3>Detalles memorables</h3>
-        <p>Añade la personalización necesaria para que cada carta sea única.</p>
-      </div>
+        <p>
+          Añadimos la personalización necesaria para que cada entrega sea una
+          pieza única e irrepetible.
+        </p>
+      </article>
+
+      <article class="bento-item col-6 full-service">
+        <h3>Un servicio de principio a fin</h3>
+        <p>
+          Nos encargamos de todo: papel premium, caligrafía, sellado lacrado y
+          la gestión del envío hasta las manos del destinatario.
+        </p>
+      </article>
     </div>
   </div>
 </section>
 
 <style>
   .why-us {
-  padding: 4rem 2rem;
-  background-color: white;
-}
-
-.section-title {
-  text-align: center;
-  font-size: var(--font-big);
-  color: var(--main-dark-color);
-  margin-bottom: 4rem;
-}
-
-.bento-grid {
-  display: grid;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* Definimos 3 columnas iguales */
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto;
-  gap: 1rem;
-}
-
-.bento-item {
-  background-color: #f9f9f9; /* Un gris muy tenue de base */
-  padding: 2rem;
-  border-radius: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 1px solid rgba(0,0,0,0.03);
-}
-
-/* --- TARJETAS ESPECIALES --- */
-
-.main-img {
-  grid-row: span 2; /* Ocupa 2 filas de alto */
-  padding: 0;
-  overflow: hidden;
-}
-
-.main-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.featured {
-  /* Usamos tu variable de luz para que resalte pero sea legible */
-  background-color: var(--main-light-accent-color);
-  border: 1px solid var(--main-accent-color);
-}
-
-.wide {
-  grid-column: span 2; /* Ocupa el espacio de 2 columnas */
-}
-
-/* --- TIPOGRAFÍA CON TUS VARIABLES --- */
-
-.bento-item h3 {
-  font-size: var(--font-semi-big);
-  color: var(--main-dark-color);
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.bento-item p {
-  font-size: var(--font-regular);
-  color: #4b5563; /* Un gris oscuro para lectura cómoda */
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* --- RESPONSIVE --- */
-
-@media (max-width: 1024px) {
-  .bento-grid { 
-    grid-template-columns: repeat(2, 1fr);
+    padding: 4rem 1rem;
+    background-color: white;
   }
-  .main-img { grid-column: span 1; grid-row: span 1; height: 300px; }
-  .wide { grid-column: span 2; }
-}
 
-@media (max-width: 768px) {
+  .section-title {
+    text-align: center;
+    font-size: var(--font-big);
+    margin-bottom: 3rem;
+    color: var(--main-dark-color);
+  }
+
   .bento-grid {
-    grid-template-columns: 1fr; /* Todo en una columna */
+    display: grid;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* El secreto: 12 columnas pequeñas para máxima precisión */
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    grid-auto-rows: minmax(min-content, auto);
   }
-  .main-img, .wide {
-    grid-column: span 1;
+
+  .bento-item {
+    background-color: #fdfcfb;
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .main-img { height: 250px; order: -1; } /* Imagen siempre arriba en móvil */
-}
+
+  /* --- CONTROL DE COLUMNAS --- */
+  .col-4 {
+    grid-column: span 4;
+  }
+  .col-6 {
+    grid-column: span 6;
+  }
+  .col-8 {
+    grid-column: span 8;
+  }
+  .row-2 {
+    grid-row: span 2;
+  }
+
+  .main-img {
+    padding: 0;
+    overflow: hidden;
+  }
+  .main-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .featured {
+    background-color: var(--main-light-accent-color);
+  }
+  .full-service {
+    border: 1px dashed var(--main-accent-color);
+  }
+
+  /* --- TIPOGRAFÍA --- */
+  .bento-item h3 {
+    font-size: var(--font-semi-big);
+    margin-bottom: 0.8rem;
+  }
+  .bento-item p {
+    font-size: var(--font-regular);
+    color: #4b5563;
+    line-height: 1.5;
+  }
+
+  /* --- RESPONSIVE SIN ERRORES --- */
+  @media (max-width: 1024px) {
+    /* En tablets, todo a 6 columnas (2 por fila) */
+    .col-4,
+    .col-6,
+    .col-8 {
+      grid-column: span 6;
+    }
+    .row-2 {
+      grid-row: span 1;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* En móviles, todo ocupa el ancho total (12 col) */
+    .col-4,
+    .col-6,
+    .col-8 {
+      grid-column: span 12;
+    }
+    .main-img {
+      order: -1;
+      height: 250px;
+    }
+  }
 </style>
