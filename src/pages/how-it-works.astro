@@ -4,31 +4,55 @@ import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
 export const prerender = true;
 ---
 
-<MainLayout
-  title="Cómo pedir tu carta personalizada"
-  description="Descubre lo fácil que es enviar un detalle inolvidable. Elige tu diseño, personaliza el mensaje y nosotros escribimos tu carta a mano con pluma fuente. ¡Haz tu pedido hoy!"
-  image="/assets/logo-full-color-text-bg.png"
->
+<MainLayout title="..." description="..." image="...">
   <main>
-    <h2>¿Como hago mi pedido?</h2>
-    <section class="steps">
-      <p>Para realizar un pedido completa nuestro formulario siguiendo estos pasos:</p>
-      <ul>
-        <li>Elige el motivo que mejor describa lo que quieras transmitir</li>
-        <li>Elige redactar tu carta o pedir una sugerencia.</li>
-        <li>Brindanos el nombre completo del destinatario.</li>
-        <li>La dirección exacta de envío.</li>
-        <li>Una referencia del lugar donde será recibido.</li>
-        <li>Dale a "Hacer pedido" y te llevará a WhatsApp con los datos ingresados para establecer <strong>comunicación eficiente.</strong></li>
-      </ul>
-      <ButtonMainColor url="/reason">Empieza ahora</ButtonMainColor>
+    <header class="hero-how">
+      <h2>¿Cómo hago mi pedido?</h2>
+      <p>Enviar un detalle inolvidable solo te tomará unos minutos.</p>
+    </header>
+
+    <section class="steps-container">
+      <ol class="stepper">
+        <li>
+          <div class="step-content">
+            <h3>Elige el motivo</h3>
+            <p>Selecciona la esencia de lo que quieras transmitir a esa persona especial.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <h3>Tu mensaje</h3>
+            <p>Elige redactar tu propia carta o solicita una sugerencia personalizada de nuestros expertos.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <h3>Datos de entrega</h3>
+            <p>Bríndanos el nombre, la dirección exacta y una referencia para asegurar una entrega perfecta.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-content">
+            <h3>Comunicación eficiente</h3>
+            <p>Al finalizar, te llevaremos a WhatsApp con tus datos para coordinar el pago y el envío.</p>
+          </div>
+        </li>
+      </ol>
+      
+      <div class="cta-wrapper">
+        <ButtonMainColor url="/reason">Empezar mi pedido</ButtonMainColor>
+      </div>
     </section>
+
     <section class="special-orders">
-      <p>Si necesitas algo especial como varias cartas o envíos internacionales, ponte en contacto con nostros. Estamos atentos a su solicitud</p>
-      <ul>
-        <li>Ecríbenos a <a href=""><strong>WhatsApp</strong></a></li>
-        <li>Envíanos un <a href=""><strong>correo</strong></a></li>
-      </ul>
+      <div class="card-note">
+        <h3>¿Necesitas algo especial?</h3>
+        <p>Para pedidos masivos o envíos internacionales, estamos listos para ayudarte.</p>
+        <div class="contact-links">
+          <a href="#" class="contact-btn">Escríbenos a <strong>WhatsApp</strong></a>
+          <a href="#" class="contact-btn">Envíanos un <strong>Correo</strong></a>
+        </div>
+      </div>
     </section>
   </main>
 </MainLayout>
@@ -36,50 +60,152 @@ export const prerender = true;
 <style>
   main {
     min-height: 100dvh;
-    width: stretch;
-    min-height: 100dvh;
+    padding: 6rem 1rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    margin-top: 4rem;
+    gap: 4rem;
+    background-color: white; /* Cambiado a blanco */
+  }
+
+  .hero-how {
+    text-align: center;
+    max-width: 600px;
   }
 
   h2 {
     font-size: var(--font-big);
+    color: var(--main-dark-color);
+    margin-bottom: 1rem;
   }
 
-  p {
-    font-size: var(--font-semi-big);
-    font-weight: 500;
-  
+  .hero-how p {
+    font-size: var(--font-regular);
+    color: #64748b;
   }
 
-  section {
-    height: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 800px;
+  /* --- STEPPER (Línea con Números) --- */
+  .steps-container {
     width: 100%;
-    padding: 0 2rem;
-    gap: 1rem;
+    max-width: 700px;
+    position: relative;
   }
 
-  ul {
+  .stepper {
+    list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 3rem;
+    counter-reset: step-counter; /* Inicializa el contador */
   }
 
-  ul li {
-    list-style: disc;
-    margin: 0 2rem;
+  .stepper li {
+    position: relative;
+    padding-left: 4rem;
+    counter-increment: step-counter; /* Incrementa el contador por cada li */
   }
 
-  .special-orders ul li a {
+  /* La línea vertical */
+  .stepper li::before {
+    content: "";
+    position: absolute;
+    left: 17px; /* Centrado con el círculo */
+    top: 0;
+    width: 2px;
+    height: calc(100% + 3rem);
+    background-color: var(--main-light-accent-color);
+    z-index: 1;
+  }
+
+  .stepper li:last-child::before {
+    display: none;
+  }
+
+  /* El círculo con el NÚMERO BLANCO */
+  .stepper li::after {
+    content: counter(step-counter); /* Muestra el número */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    background-color: var(--main-accent-color);
+    color: white; /* Color del número */
+    border-radius: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 0 0 6px white; /* Mantiene el "corte" sobre la línea */
+  }
+
+  .step-content h3 {
+    font-size: var(--font-semi-big);
+    color: var(--main-dark-color);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .step-content p {
+    font-size: var(--font-regular);
+    line-height: 1.6;
+    color: #4b5563;
+    margin: 0;
+  }
+
+  .cta-wrapper {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* --- SECCIÓN ESPECIAL --- */
+  .special-orders {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .card-note {
+    background-color: #f9fafb; /* Un gris muy ligero para diferenciar la nota */
+    border: 1px dashed var(--main-accent-color);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    text-align: center;
+  }
+
+  .card-note h3 {
+    font-size: var(--font-semi-big);
+    margin-bottom: 1rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    text-decoration: none;
     color: var(--main-accent-color);
-    text-decoration: underline;
+    border: 1px solid var(--main-accent-color);
+    padding: 0.7rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .contact-btn:hover {
+    background-color: var(--main-accent-color);
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .contact-links {
+      flex-direction: column;
+    }
   }
 </style>
