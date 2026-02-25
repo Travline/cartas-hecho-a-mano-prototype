@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 const { imgSrc, imgAlt, reason } = Astro.props;
 ---
 
-<a href={`/order?reason=${reason.replace(" ","%20")}`} class="card">
+<a href={`/order?reason=${reason.replace(" ", "%20")}`} class="card">
   <div class="reason-container">
     <p>
       {reason}
@@ -15,47 +15,76 @@ const { imgSrc, imgAlt, reason } = Astro.props;
 
 <style>
   .card {
-    background-color: #f2f2f2;
-    padding: 0.5rem;
-    border-radius: 0.8rem;
-    text-decoration: none; /* Elimina subrayado del link */
-    color: inherit; /* Mantiene el color del texto */
+    background-color: #ffffff;
+    padding: 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease,
-      background-color 0.2s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     height: 100%;
-    gap: 0.5rem;
-    justify-content: space-between;
+    gap: 0.8rem;
+    position: relative;
+    /* Sombra técnica: simula el grosor del papel */
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.1),
+      0 2px 2px rgba(0, 0, 0, 0.1),
+      0 4px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
   }
 
+
   .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: var(--main-light-accent-color, #e0e0e0);
+    transform: scale(1.03);
+    border-color: var(--main-accent-color);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .reason-container {
+    padding: 0.5rem;
+    border-left: 3px solid var(--main-accent-color); /* Indicador de color lateral */
+    background: #f9fafb;
+    margin-top: 0.5rem;
+  }
+
+  p {
+    text-align: left; /* Alineado a la izquierda se ve más como un documento */
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.2;
   }
 
   .card-image {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3; /* Formato más fotográfico que el cuadrado 1:1 */
     object-fit: cover;
-    border-radius: 0.4rem;
+    border-radius: 2px;
+    filter: sepia(20%); /* Toque vintage muy sutil */
+    transition: filter 0.3s ease;
   }
 
-  .reason-container {
-    display: flex;
-    flex-direction: column;
-    width: stretch;
-    height: stretch;
-    justify-content: center;
-    align-items: center;
+  .card:hover .card-image {
+    filter: sepia(0%); /* Se aclara al pasar el mouse */
   }
 
-  p {
-    text-align: center;
+  /* El "Sello de Lacre" simplificado y moderno */
+  .card::after {
+    content: "";
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 12px;
+    height: 12px;
+    background: var(--main-accent-color);
+    border-radius: 50%;
+    opacity: 0.3;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.03);
   }
 </style>
