@@ -1,10 +1,9 @@
 ---
-import { Image } from "astro:assets";
 
-const { imgSrc, imgAlt, reason } = Astro.props;
+const { imgSrc, imgAlt, reason, slug } = Astro.props;
 ---
 
-<a href={`/order?reason=${reason.replace(" ", "%20")}`} class="card">
+<a href={`/order/${slug}`} class="card">
   <div class="reason-container">
     <p>
       {reason}
