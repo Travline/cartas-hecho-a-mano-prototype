@@ -170,8 +170,9 @@ import ButtonMainColor from "./ButtonMainColor.astro";
 <style>
   .hero {
     position: relative;
-    height: 100vh;
+    height: calc(100dvh - 4rem);
     overflow: hidden;
+    margin-top: 4rem;
   }
 
   .hero-bg {
@@ -199,12 +200,9 @@ import ButtonMainColor from "./ButtonMainColor.astro";
 
   h1 {
     font-size: var(--font-big);
-    font-weight: 500;
     max-width: 30rem;
     color: white;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.3);;
-    backdrop-filter: blur(5px);
+    
   }
 
   .hero-button {
@@ -219,7 +217,7 @@ import ButtonMainColor from "./ButtonMainColor.astro";
 
   @media (max-width: 768px) {
     .hero {
-      height: 80dvh;
+      height: 75dvh;
     }
     .hero-content {
       justify-content: end;
