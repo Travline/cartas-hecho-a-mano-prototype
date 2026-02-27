@@ -199,19 +199,19 @@ import ButtonMainColor from "./ButtonMainColor.astro";
   }
 
   h1 {
-    font-size: var(--font-big);
-    max-width: 30rem;
+    font-size: 2rem;
+    max-width: 28rem;
     color: white;
-    text-align: center;
+    text-align: end;
   }
 
-  .hero-button {
+  .btn-base.hero-button {
     background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border-style: solid;
     border-color: var(--main-accent-color);
   }
-  .hero-button:hover {
+  .btn-base.hero-button:hover {
     background-color: rgb(from var(--main-accent-color) r g b / 0.5);
   }
 
@@ -222,6 +222,9 @@ import ButtonMainColor from "./ButtonMainColor.astro";
     .hero-content {
       justify-content: end;
       gap: 2rem;
+    }
+    h1 {
+      text-align: center;
     }
   }
 </style>
