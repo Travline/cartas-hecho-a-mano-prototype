@@ -1,14 +1,16 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import CardSelector from "../components/ui/CardSelector";
-import { Image } from "astro:assets";
-import { navigate } from "astro:transitions/client";
-import ButtonMainColor from "../components/layouts/ButtonMainColor.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import ButtonMainColor from "../../components/ButtonMainColor.astro";
 
 export const prerender = false;
 
-const reason: any =
-  Astro.url.searchParams.get("reason") || "No se escogió un motivo de carta";
+import { cardsData } from "../../content/cards";
+const { slug } = Astro.params;
+const card = cardsData.find((card) => card.slug === slug);
+
+if (!card) {
+  Astro.redirect('/404')
+}
 ---
 
 <MainLayout
@@ -18,7 +20,7 @@ const reason: any =
 >
   <section class="order-section">
     <div class="order-container">
-      <h2>{reason.replace("%20", " ")}</h2>
+      <h2 id="reason-heading">{card?.reason}</h2>
 
       <form class="order-form">
         <fieldset class="pill-group">
@@ -47,7 +49,7 @@ const reason: any =
           <label for="mensaje">Escribe tu mensaje aquí:</label>
           <textarea id="mensaje" placeholder="Querido/a..."></textarea>
           <span id="word-count">0 palabras</span>
-          <span>Trate de mantenerse por debajo de 65</span>
+          <span>Trate de mantenerse por debajo de 75</span>
         </div>
 
         <div class="shipping-fields">
@@ -309,8 +311,8 @@ const reason: any =
 
     // 4. Construcción del mensaje (Lógica anterior)
     const phone = "51992379259";
-    const urlParams = new URLSearchParams(window.location.search);
-    const motivo = (urlParams.get("reason") || "No especificado").trim();
+    const heading = document.getElementById('reason-heading') as HTMLHeadingElement
+    const motivo = heading.textContent.trim()
 
     let seccionContenido = "";
     if (radioRedactar.checked) {

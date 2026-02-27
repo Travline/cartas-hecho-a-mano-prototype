@@ -1,6 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import featureImg from "../../../public/assets/why-us-image.webp"; // Cambia la ruta a tu imagen
+
 ---
 
 <section class="why-us" aria-labelledby="why-us-title">
@@ -11,7 +10,7 @@ import featureImg from "../../../public/assets/why-us-image.webp"; // Cambia la 
 
     <div class="bento-grid">
       <figure class="bento-item col-4 row-2 main-img">
-        <Image src={featureImg} alt="Sello de lacre artesanal" loading="lazy" />
+        <img src={"assets/why-us-image.webp"} alt="Sello de lacre artesanal" loading="lazy" />
       </figure>
 
       <article class="bento-item col-4 featured">

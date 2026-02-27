@@ -55,7 +55,7 @@ import ButtonMainColor from "./ButtonMainColor.astro";
               >
               <span>Lima Metropolitana</span>
             </div>
-            <span class="cost">S/ 29.90</span>
+            <span class="cost">S/ <span class="cost number">29.90</span></span>
           </div>
 
           <div class="price-item">
@@ -78,7 +78,7 @@ import ButtonMainColor from "./ButtonMainColor.astro";
               >
               <span>Provincias (Nacional)</span>
             </div>
-            <span class="cost">S/ 39.90</span>
+            <span class="cost">S/ <span class=" cost number">39.90</span></span>
           </div>
 
           <div class="price-item international-row">
@@ -126,8 +126,10 @@ import ButtonMainColor from "./ButtonMainColor.astro";
             <h3>Tiempos</h3>
           </header>
           <p>
-            Entrega regular de <strong>7 a 10 días</strong>. Opción Express
-            Nacional por S/ 7.00 adicionales.
+            Entrega regular de <strong>7 a 10 días</strong>.
+          </p>
+          <p>
+            Opción Express de <strong>2 a 3 días</strong> por <strong>S/ 9.90</strong> adicionales.
           </p>
         </article>
 
@@ -323,8 +325,10 @@ import ButtonMainColor from "./ButtonMainColor.astro";
 
   .cost {
     font-size: var(--font-big);
-    color: var(--main-dark-color);
     font-weight: 700;
+  }
+  .number {
+    color: #ee4444;
   }
 
   .international-row {
