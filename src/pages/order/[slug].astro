@@ -9,7 +9,7 @@ const { slug } = Astro.params;
 const card = cardsData.find((card) => card.slug === slug);
 
 if (!card) {
-  Astro.redirect('/404')
+  Astro.redirect("/404");
 }
 ---
 
@@ -18,9 +18,14 @@ if (!card) {
   description="Elige si redactar tu carta o pedir un texto sugerido, agrega los datos y envíalos, así de simple tendrás tu carta"
   image="https://cartas-hecho-a-mano-prototype.vercel.app/assets/logo-full-color-text-bg.png"
 >
-  <section class="order-section">
+  <main class="order-section">
+    <h2 id="reason-heading">{card?.reason}</h2>
     <div class="order-container">
-      <h2 id="reason-heading">{card?.reason}</h2>
+      <img
+        src={card?.img}
+        alt={card?.alt}
+        style=`view-transition-name:img-${card?.slug}`
+      />
 
       <form class="order-form">
         <fieldset class="pill-group">
@@ -85,26 +90,34 @@ if (!card) {
         <ButtonMainColor id="sendWhatsapp">Confirmar Pedido</ButtonMainColor>
       </form>
     </div>
-  </section>
+  </main>
 </MainLayout>
 
 <style>
   .order-section {
     padding: 6rem 2rem 4rem 2rem;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
-  .order-container {
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
+  
   h2 {
     font-size: var(--font-big);
     text-align: center;
     margin-bottom: 3rem;
   }
-
+  .order-container {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+  
+  img {
+    width: auto;
+    max-height: 400px;
+  }
   .order-form {
     display: flex;
     flex-direction: column;
@@ -256,6 +269,16 @@ if (!card) {
 
   /* RESPONSIVE */
   @media (max-width: 600px) {
+    .order-container {
+      flex-direction: column;
+      padding: 0 2rem;
+    }
+
+    img {
+      width: stretch;
+      height: auto;
+    }
+
     .shipping-fields {
       grid-template-columns: 1fr;
     }
@@ -311,8 +334,10 @@ if (!card) {
 
     // 4. Construcción del mensaje (Lógica anterior)
     const phone = "51992379259";
-    const heading = document.getElementById('reason-heading') as HTMLHeadingElement
-    const motivo = heading.textContent.trim()
+    const heading = document.getElementById(
+      "reason-heading",
+    ) as HTMLHeadingElement;
+    const motivo = heading.textContent.trim();
 
     let seccionContenido = "";
     if (radioRedactar.checked) {

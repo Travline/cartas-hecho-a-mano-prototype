@@ -1,6 +1,5 @@
 ---
-
-const { imgSrc, imgAlt, reason, slug } = Astro.props;
+const { imgSrc, imgAlt, reason, slug, doTransition } = Astro.props;
 ---
 
 <a href={`/order/${slug}`} class="card">
@@ -9,7 +8,12 @@ const { imgSrc, imgAlt, reason, slug } = Astro.props;
       {reason}
     </p>
   </div>
-  <img class="card-image" src=`${imgSrc}` alt=`${imgAlt}` />
+  <img
+    class="card-image"
+    src=`${imgSrc}`
+    alt=`${imgAlt}`
+    style={doTransition ? `view-transition-name: img-${slug}` : undefined}
+  />
 </a>
 
 <style>
@@ -34,7 +38,6 @@ const { imgSrc, imgAlt, reason, slug } = Astro.props;
       0 4px 4px rgba(0, 0, 0, 0.1);
     border: 1px solid #e5e7eb;
   }
-
 
   .card:hover {
     transform: scale(1.03);

@@ -54,3 +54,13 @@ button {
   border: none;
   cursor: pointer;
 }
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 0s;
+  mix-blend-mode: normal;
+}
