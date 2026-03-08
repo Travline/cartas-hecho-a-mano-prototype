@@ -12,7 +12,7 @@ const { imgSrc, imgAlt, reason, slug, doTransition } = Astro.props;
     class="card-image"
     src=`${imgSrc}`
     alt=`${imgAlt}`
-    style={doTransition ? `view-transition  -name: img-${slug}` : undefined}
+    style={doTransition ? `view-transition-name: img-${slug}` : undefined}
   />
 </a>
 
@@ -74,19 +74,5 @@ const { imgSrc, imgAlt, reason, slug, doTransition } = Astro.props;
 
   .card:hover .card-image {
     filter: sepia(0%); /* Se aclara al pasar el mouse */
-  }
-
-  /* El "Sello de Lacre" simplificado y moderno */
-  .card::after {
-    content: "";
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    width: 12px;
-    height: 12px;
-    background: var(--main-accent-color);
-    border-radius: 50%;
-    opacity: 0.3;
-    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.03);
   }
 </style>

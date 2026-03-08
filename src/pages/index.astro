@@ -1,10 +1,10 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro"
 import Hero from "../components/Hero.astro"
-import FAQShort from "../components/FAQShort.astro"
+import WhyUsReplace from "../components/WhyUsReplace.astro"
 import Pricing from "../components/Pricing.astro"
-import WhyUs from "../components/WhyUs.astro"
 import ReasonShort from "../components/ReasonShort.astro"
+import FAQShort from "../components/FAQShort.astro"
 
 export const prerender = true;
 ---
@@ -12,7 +12,7 @@ export const prerender = true;
 <MainLayout image="/assets/logo-full-color-text-bg.png">
   <main>
     <Hero></Hero>
-    <WhyUs></WhyUs>
+    <WhyUsReplace></WhyUsReplace>
     <Pricing></Pricing>
     <ReasonShort></ReasonShort>
     <FAQShort></FAQShort>
