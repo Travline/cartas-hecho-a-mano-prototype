@@ -1,5 +1,5 @@
 ---
-const { imgSrc, imgAlt, reason, slug, doTransition } = Astro.props;
+const { imgSrc, imgAlt, reason, slug, doTransition, isLazy } = Astro.props;
 ---
 
 <a href={`/order/${slug}`} class="card">
@@ -13,6 +13,7 @@ const { imgSrc, imgAlt, reason, slug, doTransition } = Astro.props;
     src=`${imgSrc}`
     alt=`${imgAlt}`
     style={doTransition ? `view-transition-name: img-${slug}` : undefined}
+    loading={isLazy ? "lazy" : undefined}
   />
 </a>
 
