@@ -77,24 +77,86 @@ import ButtonMainColor from "./ButtonMainColor.astro";
       </p>
 
       <div class="engineering-box">
-        <p class="box-title">Hacemos Ingeniería Emocional</p>
+        <p class="box-title">Ingeniería Emocional</p>
+
         <div class="stamp-item">
-          <div class="stamp-icon">✉</div>
+          <div class="stamp-icon">
+            <svg
+              class="icon-mail"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect
+                x="2"
+                y="4"
+                width="20"
+                height="16"
+                rx="2"></rect></svg
+            >
+          </div>
           <p>
             <strong>No es solo papel:</strong> Es fibra que captura el pulso de una
             mano.
           </p>
         </div>
+
         <div class="stamp-item">
-          <div class="stamp-icon">✉</div>
+          <div class="stamp-icon">
+            <svg
+              class="icon-mail"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect
+                x="2"
+                y="4"
+                width="20"
+                height="16"
+                rx="2"></rect></svg
+            >
+          </div>
           <p>
-            <strong>No es solo tinta:</strong> Es el rastro de una intención increíble.
+            <strong>No es solo tinta:</strong> Es el rastro imborrable de una intención
+            increíble.
           </p>
         </div>
+
         <div class="stamp-item">
-          <div class="stamp-icon">✉</div>
+          <div class="stamp-icon">
+            <svg
+              class="icon-mail"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect
+                x="2"
+                y="4"
+                width="20"
+                height="16"
+                rx="2"></rect></svg
+            >
+          </div>
           <p>
-            <strong>No es solo una carta:</strong> Es un portal que detiene el tiempo.
+            <strong>No es solo una carta:</strong> Es un portal físico que detiene
+            el tiempo.
           </p>
         </div>
       </div>
@@ -208,6 +270,10 @@ import ButtonMainColor from "./ButtonMainColor.astro";
 
   /* --- Caja de "Ingeniería Emocional" --- */
   .engineering-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espacio entre cada viñeta */
+
     position: relative;
     padding: 2rem;
     margin: 2rem 0;
@@ -247,16 +313,40 @@ import ButtonMainColor from "./ButtonMainColor.astro";
   /* EL CONTENIDO: Le damos un "escudo" de legibilidad */
   .stamp-item {
     display: flex;
-    gap: 1.2rem;
-    align-items: flex-start;
-
-    /* Fondo blanco sutil en cada item para que los puntos no toquen las letras */
+    align-items: center; /* Alinea el icono con la primera línea de texto */
+    gap: 1rem;
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(
-      2px
-    ); /* Opcional: difumina los puntos que pasen por detrás */
     padding: 1rem;
-    border-radius: 0.75rem;
+    border-radius: 0.8rem;
+    transition: transform 0.2s ease;
+  }
+
+  .stamp-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 2px dotted var(--main-accent-color);
+    border-radius: 6px;
+    flex-shrink: 0; /* EVITA que el icono se aplaste si el texto es largo */
+    transform: rotate(-3deg);
+  }
+
+  .stamp-item p {
+    margin: 0; /* Quita márgenes por defecto para que no desfase el texto */
+    line-height: 1.4;
+    color: var(--gray-accent-color);
+    font-size: 1.05rem;
+  }
+
+  .stamp-item strong {
+    color: var(--main-accent-color);
+    display: inline; /* Cambiado de 'block' a 'inline' para que el texto siga en la misma línea */
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-right: 0.3rem;
   }
 
   .box-title {
