@@ -11,10 +11,10 @@ interface Props {
   image?: string;
 }
 
-const { 
-  title = "Cartas Hecho A Mano", 
+const {
+  title = "Cartas Hecho A Mano",
   description = "Regala emociones con nuestras cartas personalizadas hechas totalmente a mano.",
-  image = "/assets/logo-full-color-text-bg.png"
+  image = "/assets/logo-full-color-text-bg.png",
 } = Astro.props;
 
 const DOMAIN = "https://cartas-hecho-a-mano-prototype.vercel.app";
@@ -27,19 +27,26 @@ const imageUrl = `${DOMAIN}${image}`;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Quintessential&display=swap"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Quintessential&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
 
-    <title>{title === "Cartas Hecho A Mano" ? title : `${title} | Cartas Hecho A Mano`}</title>
+    <title>
+      {
+        title === "Cartas Hecho A Mano"
+          ? title
+          : `${title} | Cartas Hecho A Mano`
+      }
+    </title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
@@ -54,7 +61,7 @@ const imageUrl = `${DOMAIN}${image}`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
 
-    <ClientRouter/>
+    <ClientRouter />
   </head>
   <body>
     <Header />
