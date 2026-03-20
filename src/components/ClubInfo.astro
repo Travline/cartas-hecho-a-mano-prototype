@@ -1,0 +1,326 @@
+---
+import ButtonMainColor from "./ButtonMainColor.astro";
+---
+
+<section class="experience-section" id="club-section">
+  <div class="experience-row">
+    <div class="media-container stamp-border">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="experience-video"
+        poster="/assets/poster-club-1.jpg"
+      >
+        <source src="/assets/club-1.webm" type="video/webm" />
+      </video>
+      <div class="floating-badge">Mensual</div>
+    </div>
+
+    <div class="text-container">
+      <span class="section-subtitle">Membresía</span>
+      <h2>El Club de los Recuerdos Inolvidables</h2>
+      <p class="main-description">
+        ¡Descubre la alegría de recibir una carta todos los meses! Cada entrega
+        es un pequeño abrazo por correo.
+      </p>
+
+      <ul class="benefit-list">
+        <li><span class="icon-dot"></span> Carta sincera hecha a mano</li>
+        <li><span class="icon-dot"></span> Pegatina exclusiva de colección</li>
+        <li><span class="icon-dot"></span> Lista de reproducción mensual</li>
+        <li>
+          <span class="icon-dot"></span> Inspira conexión, creatividad y amor propio
+        </li>
+      </ul>
+
+      <p class="impact-phrase">
+        <strong
+          >¡Creamos experiencias escritas a mano que no se olvidan, no se
+          archivan y no se borran!</strong
+        >
+      </p>
+      <p class="impact-phrase final">
+        Únete a la comunidad y experimenta el placer de conectarte offline.
+      </p>
+      <ButtonMainColor url="/club" class="custom-btn" pulse={true}>
+        Quiero generar ese impacto en mí
+      </ButtonMainColor>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <div class="experience-row reverse">
+    <div class="media-container stamp-border">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="experience-video"
+        poster="/assets/poster-club-2.jpg"
+      >
+        <source src="/assets/club-2.webm" type="video/webm" />
+      </video>
+    </div>
+
+    <div class="text-container">
+      <span class="section-subtitle">Programación Anual</span>
+      <h2>Memoria Histórica</h2>
+      <p>
+        Programa las 3 o 5 cartas más importantes del año: el cumple de mamá, la
+        abuela, tu aniversario o ese mensaje para tu ser más querido. <strong
+          >Nosotros nos encargamos, tú te quitas la presión del olvido.</strong
+        >
+      </p>
+
+      <div class="engineering-box">
+        <p class="box-title">Hacemos Ingeniería Emocional</p>
+        <div class="stamp-item">
+          <div class="stamp-icon">✉</div>
+          <p>
+            <strong>No es solo papel:</strong> Es fibra que captura el pulso de una
+            mano.
+          </p>
+        </div>
+        <div class="stamp-item">
+          <div class="stamp-icon">✉</div>
+          <p>
+            <strong>No es solo tinta:</strong> Es el rastro de una intención increíble.
+          </p>
+        </div>
+        <div class="stamp-item">
+          <div class="stamp-icon">✉</div>
+          <p>
+            <strong>No es solo una carta:</strong> Es un portal que detiene el tiempo.
+          </p>
+        </div>
+      </div>
+
+      <ButtonMainColor url="/programado" class="custom-btn" pulse={true}>
+        Envío programado
+      </ButtonMainColor>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience-section {
+    padding: 6rem 2rem;
+    background-color: #fcfcfc; /* Fondo casi blanco para resaltar del resto */
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .experience-row {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .experience-row.reverse {
+    flex-direction: row-reverse;
+  }
+
+  /* --- Contenedor de Video con Estilo Estampilla --- */
+  .media-container {
+    flex: 1;
+    position: relative;
+    padding: 15px;
+    background: white;
+  }
+
+  .stamp-border {
+    border: 3px dotted var(--main-accent-color);
+    border-radius: 8px;
+    box-shadow: 10px 10px 0px var(--main-light-accent-color);
+    transition: transform 0.3s ease;
+  }
+
+  .experience-video {
+    width: 100%;
+    aspect-ratio: 4/5; /* Formato más vertical/postal */
+    object-fit: cover;
+    display: block;
+  }
+
+  .floating-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--main-accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    transform: rotate(5deg);
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 4px;
+  }
+
+  /* --- Contenido de Texto --- */
+  .text-container {
+    flex: 1;
+  }
+
+  .section-subtitle {
+    color: var(--main-accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: var(--font-big);
+    color: var(--gray-accent-color);
+    margin: 1rem 0;
+    line-height: 1.1;
+  }
+
+  .benefit-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+
+  .benefit-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.8rem;
+  }
+
+  .icon-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--main-accent-color);
+    border-radius: 50%;
+  }
+
+  .impact-phrase.final {
+    margin: 1rem 0 2rem 0;
+  }
+
+  /* --- Caja de "Ingeniería Emocional" --- */
+  .engineering-box {
+    position: relative;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 1.5rem;
+
+    /* Borde discontinuo para estilo manual */
+    border: 2px dashed var(--main-accent-color);
+
+    /* FONTO SÓLIDO: Esto evita la transparencia del contenido */
+    background-color: white;
+
+    /* Para que el contenido flote sobre el pseudo-elemento */
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* LA CAPA DE PUNTOS */
+  .engineering-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1; /* Se va al fondo del contenedor */
+
+    /* Patrón de puntos tipo ladrillo */
+    background-image:
+      radial-gradient(var(--main-light-accent-color) 20%, transparent 20%),
+      radial-gradient(var(--main-light-accent-color) 20%, transparent 20%);
+    background-position:
+      0 0,
+      15px 15px;
+    background-size: 30px 30px;
+
+    /* Bajamos la opacidad de los puntos para que sean un detalle, no un distractor */
+    opacity: 0.4;
+  }
+
+  /* EL CONTENIDO: Le damos un "escudo" de legibilidad */
+  .stamp-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+
+    /* Fondo blanco sutil en cada item para que los puntos no toquen las letras */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(
+      2px
+    ); /* Opcional: difumina los puntos que pasen por detrás */
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  .box-title {
+    position: relative;
+    display: inline-block;
+    background: white;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--main-accent-color);
+    color: var(--gray-accent-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    /* El toque de "Ingeniería": un ángulo pequeño */
+    transform: rotate(-1.5deg);
+    box-shadow: 3px 3px 0px var(--main-accent-color);
+  }
+
+  .box-title {
+    font-weight: 800;
+    color: var(--main-accent-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .stamp-icon {
+    width: 32px;
+    height: 32px;
+    background: white;
+    border: 1px dotted var(--main-accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 4px;
+    font-size: 1.4rem;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 2px dashed var(--main-light-accent-color);
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 900px) {
+    .experience-row,
+    .experience-row.reverse {
+      flex-direction: column;
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .experience-video {
+      aspect-ratio: 16/9;
+    }
+
+    .benefit-list li,
+    .stamp-item {
+      justify-content: center;
+    }
+
+    .media-container {
+      width: 100%;
+    }
+  }
+</style>

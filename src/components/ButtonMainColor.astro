@@ -1,14 +1,25 @@
 ---
-const { url, class: className, id, ...rest } = Astro.props;
+// Añadimos 'pulse' a la desestructuración de props
+const { url, class: className, id, pulse = false, ...rest } = Astro.props;
 const Element = url ? "a" : "button";
 ---
 
-<Element href={url} id={id} class:list={["btn-base", className]} {...rest}>
+<Element 
+  href={url} 
+  id={id} 
+  class:list={[
+    "btn-base", 
+    className, 
+    { "btn-pulse": pulse } // Añade la clase solo si pulse es true
+  ]} 
+  {...rest}
+>
   <slot />
 </Element>
 
 <style>
   .btn-base {
+    position: relative; /* Necesario para el posicionamiento del pulso */
     padding: 0.75rem 1.5rem;
     background-color: var(--main-accent-color);
     color: white;
@@ -24,14 +35,49 @@ const Element = url ? "a" : "button";
     font-size: var(--font-semi-big);
     text-align: center;
     box-shadow: 0px 0px 10px rgba(60, 153, 186, 0.3);
+    z-index: 1; /* Asegura que el texto esté sobre el pulso */
+    overflow: visible; !important
   }
 
+  /* --- Lógica del Pulso --- */
+  .btn-pulse::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0.5rem; /* Igual al del botón */
+    background-color: var(--main-accent-color);
+    z-index: -1;
+    animation: pulse-latido 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-latido {
+    0% {
+      inset: 0;
+      opacity: 0.9;
+    }
+    40%, 60% {
+      inset: -1.2rem; /* Expansión */
+      opacity: 0;
+    }
+    100% {
+      inset: 0;
+      opacity: 0;
+    }
+  }
+
+  /* Interacciones */
   .btn-base:hover {
     transform: scale(1.02);
     filter: brightness(1.1);
   }
+  
+  /* Pausar pulso al hacer hover para no distraer en el click */
+  .btn-base:hover::before {
+    animation-play-state: paused;
+    opacity: 0;
+  }
+
   .btn-base:active {
     transform: scale(0.98);
-    filter: brightness(1.1);
   }
 </style>
