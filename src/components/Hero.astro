@@ -72,16 +72,18 @@ import ButtonMainColor from "./ButtonMainColor.astro";
 
   @media (max-width: 768px) {
     .hero {
-      height: 75dvh;
+      height: 100dvh;
     }
     .hero-bg {
       object-position: 40% center;
+      max-height: calc(100dvh - 25dvh);
     }
     .hero-content {
       justify-content: end;
       align-items: center;
       gap: 1.5rem;
       padding: 1.25rem 1rem;
+      max-height: calc(100dvh - 25dvh);
     }
     h1 {
       font-size: 1.4rem;
